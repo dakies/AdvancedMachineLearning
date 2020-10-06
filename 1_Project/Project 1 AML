@@ -1,0 +1,36 @@
+Project 1 AML
+
+Normalisastion/Scaling
+Outier detection
+Imputation
+Feature selection
+Estimation
+
+Normalization and Scaling
+	Robust scaler
+	normalizer
+	scaler
+
+Outlier detecion
+	Mean and median calue very simmilar
+	Max very different
+	1)Fit Gaussian to coloumns, and filter out after certain std
+	2)scitkit learn outlier detectors
+
+Imputation
+	Data very big
+	knn and fitting and estimator won't work - I guess
+	1) Mean, median, mode, constant
+	2)forward fill & backward fill (probably dont make sense because MRI data)
+
+Feature selection
+	1)Variance methods
+	2)Filter out similar features ->scitkit
+	3)L1
+	4)Tree based methods
+
+Estimation
+	Lasso
+	Ridge
+	XGboost (tree)
+	Robust regression?
