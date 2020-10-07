@@ -14,8 +14,11 @@ Normalization and Scaling
 Outlier detecion
 	Mean and median calue very simmilar
 	Max very different
+	How is this treated in the
 	1)Fit Gaussian to coloumns, and filter out after certain std
-	2)scitkit learn outlier detectors
+	scitkit
+	2)Isolation Forest
+	    contamination
 
 Imputation
 	Data very big
@@ -33,4 +36,5 @@ Estimation
 	Lasso
 	Ridge
 	XGboost (tree)
-	Robust regression?
+	MLPRegressor - NeuralNet
+	Robust regression? - Not feasable for large datasets
