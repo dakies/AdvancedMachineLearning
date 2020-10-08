@@ -1,5 +1,5 @@
 import pandas as pd
-import xgboost as xgb
+import xgboost.sklearn as xgb
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
 from sklearn.impute import SimpleImputer
@@ -48,7 +48,7 @@ pipe = Pipeline([
     ('impute', SimpleImputer()),
     ('scale', 'passthrough'),
     ('selection', SelectKBest(f_regression)),
-    ('estimation', SVR())
+    ('estimation', xgb.XGBRegressor())
 ])
 
 # Specify parameters to be searched over
@@ -56,8 +56,7 @@ param_grid = [
     {
         'scale': [RobustScaler()],  # StandardScaler(),Normalizer()
         'impute__strategy': ['mean'],  # , 'median'
-        'selection__k':[90, 100, 110],
-        'estimation__kernel': ['rbf']
+        'selection__k':[100]
     }
 ]
 
