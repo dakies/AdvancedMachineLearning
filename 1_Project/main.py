@@ -1,6 +1,6 @@
 import pandas as pd
 import xgboost as xgb
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
 from sklearn.impute import SimpleImputer
 from sklearn.feature_selection import SelectFromModel
@@ -30,7 +30,7 @@ X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
-if 0:
+if 1:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
     print('Debug mode on')
@@ -54,10 +54,13 @@ pipe = Pipeline([
 # Specify parameters to be searched over
 param_grid = [
     {
-        'scale': [RobustScaler()],  # StandardScaler(),Normalizer()
-        'impute__strategy': ['mean'],  # , 'median'
-        'selection__k':[90, 100, 110],
-        'estimation__kernel': ['rbf']
+        'scale': [RobustScaler()],  # , StandardScaler(), Normalizer()
+        'impute__strategy': ['mean'], # , 'median'
+        'selection__k':[90, 100],
+        'estimation__kernel': ['rbf', 'poly'],
+        'estimation__C': [0.1, 1, 10, 100],
+        'estimation__degree': [3, 5]
+
     }
 ]
 
