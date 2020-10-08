@@ -1,4 +1,8 @@
+from pprint import pprint
+from time import time
+import logging
 import pandas as pd
+
 import xgboost as xgb
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
@@ -6,7 +10,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.svm import SVR
-from sklearn.linear_model import Lasso
 from sklearn.feature_selection import SelectKBest, f_regression
 
 
@@ -23,6 +26,12 @@ def outlier_rejection(X, y):
     return X[y_pred == 1], y[y_pred == 1]
 
 
+print(__doc__)
+
+# Display progress logs on stdout
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(levelname)s %(message)s')
+
 # Import data
 sample = pd.read_csv('raw/sample.csv')
 X_test = pd.read_csv('raw/X_test.csv', index_col='id')
@@ -30,7 +39,7 @@ X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
-if 1:
+if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
     print('Debug mode on')
@@ -46,6 +55,7 @@ missing_value_df.sort_values('percent_missing', inplace=True)
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
     ('impute', SimpleImputer()),
+    ('outlier',FunctionSampler(func=outlier_rejection)),
     ('scale', 'passthrough'),
     ('selection', SelectKBest(f_regression)),
     ('estimation', SVR())
@@ -55,25 +65,29 @@ pipe = Pipeline([
 param_grid = [
     {
         'scale': [RobustScaler()],  # , StandardScaler(), Normalizer()
-        'impute__strategy': ['mean'], # , 'median'
+        'impute__strategy': ['mean', 'median'],
         'selection__k':[90, 100],
-        'estimation__kernel': ['rbf', 'poly'],
-        'estimation__C': [0.1, 1, 10, 100],
-        'estimation__degree': [3, 5]
+        'estimation__kernel': ['rbf'],
+        'estimation__C': [10, 50, 100, 500, 1000]
 
     }
 ]
 
 # Gridsearch
 search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='r2')
-print("Starting Gridsearch")
+print("Performing grid search...")
+print("pipeline:", [name for name, _ in pipe.steps])
+print("parameters:")
+pprint(param_grid)
+t0 = time()
 search.fit(X_train, y_train)
+print("done in %0.3fs" % (time() - t0))
+print()
+
 
 # Evaluate Results
-print("Best parameters set found on development set:")
-print()
-print('R2 score: ', search.best_score_)
-print(search.best_params_)
+print('Best R2 score: ', search.best_score_)
+print("Best parameters set:", search.best_params_)
 print()
 print("Grid scores on development set:")
 print()
@@ -84,8 +98,11 @@ for mean, std, params in zip(means, stds, search.cv_results_['params']):
           % (mean, std * 2, params))
 print()
 
+
+# Train best estimator on whole data
+best = search.best_estimator_.fit(X_train, y_train)
 # Predict for test set
-y_test = search.predict(X_test)
+y_test = best.predict(X_test)
 print()
 
 
