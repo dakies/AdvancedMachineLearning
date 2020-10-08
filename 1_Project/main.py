@@ -56,10 +56,15 @@ param_grid = [
     {
         'scale': [RobustScaler()],  # StandardScaler(),Normalizer()
         'impute__strategy': ['mean'],  # , 'median'
-        'selection__k':[100]
+        'selection__k':[100],
+        'estimation__max_depth': [5],
+        'estimation__min_child_weight': [1],
+        'estimation__gamma': [0],
+        'estimation__subsample': [0.8],
+        'estimation__colsample_bytree': [0.8]
+
     }
 ]
-
 # Gridsearch
 search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='r2')
 print("Starting Gridsearch")
