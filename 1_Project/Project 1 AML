@@ -19,6 +19,7 @@ Outlier detecion
 	scitkit
 	2)Isolation Forest
 	    contamination
+	3)Local outlier factor
 
 Imputation
 	Data very big
