@@ -1,11 +1,14 @@
 import pandas as pd
 import xgboost as xgb
-import numpy as np
-from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
 from sklearn.impute import SimpleImputer
+from sklearn.feature_selection import SelectFromModel
 from sklearn.neighbors import LocalOutlierFactor
-from sklearn.ensemble import IsolationForest
+from sklearn.svm import SVR
+from sklearn.linear_model import Lasso
+from sklearn.feature_selection import SelectKBest, f_regression
+
 
 from imblearn.pipeline import Pipeline
 from imblearn import FunctionSampler
@@ -14,7 +17,7 @@ from imblearn import FunctionSampler
 def outlier_rejection(X, y):
     """This will be our function used to resample our dataset."""
     print('Initiating Outlier detection')
-    model = IsolationForest()
+    model = LocalOutlierFactor()
     y_pred = model.fit_predict(X)
     print('Outliers removed', X[y_pred == -1].shape[0])
     return X[y_pred == 1], y[y_pred == 1]
@@ -43,19 +46,18 @@ missing_value_df.sort_values('percent_missing', inplace=True)
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
     ('impute', SimpleImputer()),
-    ('outlier', FunctionSampler(func=outlier_rejection)),
     ('scale', 'passthrough'),
-    ('estimation', xgb.XGBRegressor())
+    ('selection', SelectKBest(f_regression)),
+    ('estimation', SVR())
 ])
 
 # Specify parameters to be searched over
 param_grid = [
     {
-        'scale': [Normalizer(), StandardScaler(), RobustScaler()],
-        'impute__strategy': ['mean', 'median', 'most_frequent'],
-        'estimation__max_depth':[6],  # [2, 6, 8],
-        'estimation__gamma': [0],  # [0, 2, 8],
-        'estimation__min_child_weight': [1]  # [1, 4, 8]
+        'scale': [RobustScaler()],  # StandardScaler(),Normalizer()
+        'impute__strategy': ['mean'],  # , 'median'
+        'selection__k':[90, 100, 110],
+        'estimation__kernel': ['rbf']
     }
 ]
 
