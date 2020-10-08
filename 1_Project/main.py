@@ -16,8 +16,7 @@ def outlier_rejection(X, y):
     print('Initiating Outlier detection')
     model = IsolationForest()
     y_pred = model.fit_predict(X)
-    print('Outlier detection successful')
-    print('Training data shape', X.shape, y.shape)
+    print('Outliers removed', X[y_pred == -1].shape[0])
     return X[y_pred == 1], y[y_pred == 1]
 
 
@@ -26,12 +25,12 @@ sample = pd.read_csv('raw/sample.csv')
 X_test = pd.read_csv('raw/X_test.csv', index_col='id')
 X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
-print('Data shape before outlier detection', X_train.shape, y_train.shape)
 
 # Reduce Data for debugging
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
+    print('Debug mode on')
 
 # Inspect data
 percent_missing = X_test.isnull().sum() * 100 / len(X_test)
@@ -43,9 +42,9 @@ missing_value_df.sort_values('percent_missing', inplace=True)
 # Create pipeline
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
-    ('scale', 'passthrough'),
     ('impute', SimpleImputer()),
     ('outlier', FunctionSampler(func=outlier_rejection)),
+    ('scale', 'passthrough'),
     ('estimation', xgb.XGBRegressor())
 ])
 
@@ -54,7 +53,7 @@ param_grid = [
     {
         'scale': [Normalizer(), StandardScaler(), RobustScaler()],
         'impute__strategy': ['mean', 'median', 'most_frequent'],
-        'estimation__max_depth': [6],  # [2, 6, 8],
+        'estimation__max_depth':[6],  # [2, 6, 8],
         'estimation__gamma': [0],  # [0, 2, 8],
         'estimation__min_child_weight': [1]  # [1, 4, 8]
     }
@@ -83,6 +82,7 @@ print()
 # Predict for test set
 y_test = search.predict(X_test)
 print()
+
 
 # Save prediction
 y_test = pd.DataFrame(y_test)
