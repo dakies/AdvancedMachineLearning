@@ -1,36 +1,60 @@
+import warnings
+from sklearn.exceptions import DataConversionWarning
+# Turn off sklearn warnings
+warnings.filterwarnings("ignore")
 from pprint import pprint
 from time import time
 import logging
 import pandas as pd
 
-import xgboost as xgb
+import numpy as np
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
 from sklearn.impute import SimpleImputer
 from sklearn.feature_selection import SelectFromModel
-from sklearn.neighbors import LocalOutlierFactor
 from sklearn.svm import SVR
 from sklearn.feature_selection import SelectKBest, f_regression
-
 
 from imblearn.pipeline import Pipeline
 from imblearn import FunctionSampler
 
+from sklearn.neighbors import LocalOutlierFactor
+from sklearn.ensemble import IsolationForest
+from sklearn.covariance import EllipticEnvelope
 
-def outlier_rejection(X, y):
+
+def lof(X, y):
     """This will be our function used to resample our dataset."""
     print('Initiating Outlier detection')
     model = LocalOutlierFactor()
     y_pred = model.fit_predict(X)
-    print('Outliers removed', X[y_pred == -1].shape[0])
+    print('lof: Outliers removed', X[y_pred == -1].shape[0])
+    print(X[y_pred == 1].shape, y[y_pred == 1].shape)
     return X[y_pred == 1], y[y_pred == 1]
 
 
-print(__doc__)
+def isof(X, y):
+    """This will be our function used to resample our dataset."""
+    print('Initiating Outlier detection')
+    model = IsolationForest()
+    y_pred = model.fit_predict(X)
+    print('isof: Outliers removed', X[y_pred == -1].shape[0])
+    return X[y_pred == 1], y[y_pred == 1]
+
+
+def ecov(X, y):
+    """This will be our function used to resample our dataset."""
+    print('Initiating Outlier detection')
+    model = EllipticEnvelope()
+    y_pred = model.fit_predict(X)
+    print('ecov: Outliers removed', X[y_pred == -1].shape[0])
+    return X[y_pred == 1], y[y_pred == 1]
+
 
 # Display progress logs on stdout
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
+
 
 # Import data
 sample = pd.read_csv('raw/sample.csv')
@@ -39,7 +63,7 @@ X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
-if 0:
+if 1:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
     print('Debug mode on')
@@ -55,18 +79,19 @@ missing_value_df.sort_values('percent_missing', inplace=True)
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
     ('impute', SimpleImputer()),
-    ('outlier',FunctionSampler(func=outlier_rejection)),
+    ('outlier', 'passthrough'),
     ('scale', 'passthrough'),
-    ('selection', SelectKBest(f_regression)),
+    ('selection', SelectKBest(f_regression)),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
     ('estimation', SVR())
 ])
 
 # Specify parameters to be searched over
 param_grid = [
     {
-        'scale': [RobustScaler()],  # , StandardScaler(), Normalizer()
+        'scale': [RobustScaler(), StandardScaler(), Normalizer()],
+        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof), FunctionSampler(func=ecov)],
         'impute__strategy': ['mean', 'median'],
-        'selection__k':[90, 100],
+        'selection__k': [90, 100],
         'estimation__kernel': ['rbf'],
         'estimation__C': [10, 50, 100, 500, 1000]
 
@@ -84,7 +109,6 @@ search.fit(X_train, y_train)
 print("done in %0.3fs" % (time() - t0))
 print()
 
-
 # Evaluate Results
 print('Best R2 score: ', search.best_score_)
 print("Best parameters set:", search.best_params_)
@@ -98,13 +122,11 @@ for mean, std, params in zip(means, stds, search.cv_results_['params']):
           % (mean, std * 2, params))
 print()
 
-
 # Train best estimator on whole data
 best = search.best_estimator_.fit(X_train, y_train)
 # Predict for test set
 y_test = best.predict(X_test)
 print()
-
 
 # Save prediction
 y_test = pd.DataFrame(y_test)
