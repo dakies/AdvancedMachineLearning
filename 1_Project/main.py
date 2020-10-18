@@ -1,54 +1,45 @@
-import warnings
-from sklearn.exceptions import DataConversionWarning
-# Turn off sklearn warnings
-warnings.filterwarnings("ignore")
 from pprint import pprint
 from time import time
 import logging
 import pandas as pd
-
-import numpy as np
-from sklearn.model_selection import GridSearchCV, train_test_split
-from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler
-from sklearn.impute import SimpleImputer
-from sklearn.feature_selection import SelectFromModel
-from sklearn.svm import SVR
-from sklearn.feature_selection import SelectKBest, f_regression
-
 from imblearn.pipeline import Pipeline
 from imblearn import FunctionSampler
+from sklearn.model_selection import GridSearchCV, train_test_split
+
+from sklearn.impute import SimpleImputer
 
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.ensemble import IsolationForest
-from sklearn.covariance import EllipticEnvelope
+
+from sklearn.preprocessing import StandardScaler, RobustScaler
+
+from sklearn.feature_selection import SelectKBest, f_regression
+
+from sklearn.svm import SVR
+
+# Todo: Try different estimaor: kernelized ridge&lass with rbf kernel
+# Todo: Try XGBoost -> Problem Euler
+# Todo: Try different feature selection methods
+# Todo: Solve the fucking warnings that flood the screen and make output near unreadable
 
 
-def lof(X, y):
+def lof(x, y):
     """This will be our function used to resample our dataset."""
     print('Initiating Outlier detection')
     model = LocalOutlierFactor()
-    y_pred = model.fit_predict(X)
-    print('lof: Outliers removed', X[y_pred == -1].shape[0])
-    print(X[y_pred == 1].shape, y[y_pred == 1].shape)
-    return X[y_pred == 1], y[y_pred == 1]
+    y_pred = model.fit_predict(x)
+    print('lof: Outliers removed', x[y_pred == -1].shape[0])
+    print(x[y_pred == 1].shape, y[y_pred == 1].shape)
+    return x[y_pred == 1], y[y_pred == 1]
 
 
-def isof(X, y):
+def isof(x, y):
     """This will be our function used to resample our dataset."""
     print('Initiating Outlier detection')
     model = IsolationForest()
-    y_pred = model.fit_predict(X)
-    print('isof: Outliers removed', X[y_pred == -1].shape[0])
-    return X[y_pred == 1], y[y_pred == 1]
-
-
-def ecov(X, y):
-    """This will be our function used to resample our dataset."""
-    print('Initiating Outlier detection')
-    model = EllipticEnvelope()
-    y_pred = model.fit_predict(X)
-    print('ecov: Outliers removed', X[y_pred == -1].shape[0])
-    return X[y_pred == 1], y[y_pred == 1]
+    y_pred = model.fit_predict(x)
+    print('isof: Outliers removed', x[y_pred == -1].shape[0])
+    return x[y_pred == 1], y[y_pred == 1]
 
 
 # Display progress logs on stdout
@@ -88,10 +79,10 @@ pipe = Pipeline([
 # Specify parameters to be searched over
 param_grid = [
     {
-        'scale': [RobustScaler(), StandardScaler(), Normalizer()],
-        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof), FunctionSampler(func=ecov)],
+        'scale': [RobustScaler(), StandardScaler()],
+        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
         'impute__strategy': ['mean', 'median'],
-        'selection__k': [90, 100],
+        'selection__k': [90, 100, 110],
         'estimation__kernel': ['rbf'],
         'estimation__C': [10, 50, 100, 500, 1000]
 

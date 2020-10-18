@@ -97,7 +97,7 @@
       <updated>1601909632065</updated>
       <workItem from="1601909635023" duration="4217000" />
       <workItem from="1601949381138" duration="21499000" />
-      <workItem from="1602702781271" duration="1796000" />
+      <workItem from="1602702781271" duration="4140000" />
     </task>
     <servers />
   </component>
@@ -110,6 +110,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="339" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602764212013">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="339" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800@0.0.1280.800" timestamp="1602764212013" />
     <state x="377" y="191" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1602694147720">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

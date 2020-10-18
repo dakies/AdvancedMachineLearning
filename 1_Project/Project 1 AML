@@ -8,18 +8,16 @@ Estimation
 
 Normalization and Scaling
 	Robust scaler
-	normalizer
+	normalizer -> gives low cv scores
 	scaler
 
 Outlier detecion
-	Mean and median calue very simmilar
+	Mean and median value very simmilar
 	Max very different
-	How is this treated in the
-	1)Fit Gaussian to coloumns, and filter out after certain std
-	scitkit
-	2)Isolation Forest
+	1)Isolation Forest
 	    contamination
-	3)Local outlier factor
+	2)Local outlier factor
+	3)EllipticEnvelope -> low cv score (with standard parameters)
 
 Imputation
 	Data very big
@@ -35,9 +33,6 @@ Feature selection
 	4)Tree based methods
 
 Estimation
-	Lasso
-	Ridge
-	XGboost (tree)
+	XGBoost (tree)/ RandomForrest
 	SVR
-	MLPRegressor - NeuralNet
-	Robust regression? - Not feasable for large datasets
+	Kernelized Ridge
