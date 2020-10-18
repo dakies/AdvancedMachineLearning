@@ -5,6 +5,8 @@ import pandas as pd
 from imblearn.pipeline import Pipeline
 from imblearn import FunctionSampler
 from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.ensemble import RandomForestRegressor
+import xgboost as xgb
 
 from sklearn.impute import SimpleImputer
 
@@ -54,7 +56,7 @@ X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
-if 1:
+if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
     print('Debug mode on')
@@ -76,6 +78,15 @@ pipe = Pipeline([
     ('estimation', SVR())
 ])
 
+pipe_randforest = Pipeline([
+    # the scale stage is populated by the param_grid
+    ('impute', SimpleImputer()),
+    ('outlier', 'passthrough'),
+    ('scale', 'passthrough'),
+    ('selection', SelectKBest(f_regression)),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
+    ('estimation', RandomForestRegressor())
+])
+
 # Specify parameters to be searched over
 param_grid = [
     {
@@ -89,12 +100,27 @@ param_grid = [
     }
 ]
 
+param_grid_randforest = [
+    {
+        'scale': [RobustScaler(), StandardScaler()],
+        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
+        'impute__strategy': ['mean', 'median'],
+        'selection__k': [90, 100, 110]#,
+        'estimation__bootstrap': [True, False],
+        'estimation__max_depth': [10, 30, 50, 60, 80, 100, None],
+        'estimation__max_features': ['auto', 'sqrt'],
+        'estimation__min_samples_leaf': [1, 2, 4],
+        'estimation__min_samples_split': [2, 5, 10],
+        'estimation__n_estimators': [200, 400, 600, 800, 1000, 1200]
+    }
+]
+
 # Gridsearch
-search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='r2')
+search = GridSearchCV(pipe_randforest, param_grid=param_grid_randforest, n_jobs=-1, scoring='r2')
 print("Performing grid search...")
-print("pipeline:", [name for name, _ in pipe.steps])
+print("pipeline:", [name for name, _ in pipe_randforest.steps])
 print("parameters:")
-pprint(param_grid)
+pprint(param_grid_randforest)
 t0 = time()
 search.fit(X_train, y_train)
 print("done in %0.3fs" % (time() - t0))
@@ -120,6 +146,6 @@ y_test = best.predict(X_test)
 print()
 
 # Save prediction
-y_test = pd.DataFrame(y_test)
-y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
-print('Results saved as prediction.csv')
+#y_test = pd.DataFrame(y_test)
+#y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
+#print('Results saved as prediction.csv')
