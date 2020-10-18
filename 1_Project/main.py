@@ -4,6 +4,7 @@ import logging
 import pandas as pd
 from imblearn.pipeline import Pipeline
 from imblearn import FunctionSampler
+from sklearn.kernel_ridge import KernelRidge
 from sklearn.model_selection import GridSearchCV, train_test_split
 
 from sklearn.impute import SimpleImputer
@@ -13,9 +14,10 @@ from sklearn.ensemble import IsolationForest
 
 from sklearn.preprocessing import StandardScaler, RobustScaler
 
-from sklearn.feature_selection import SelectKBest, f_regression
+from sklearn.feature_selection import SelectKBest, f_regression, VarianceThreshold, SelectFpr
 
 from sklearn.svm import SVR
+from sklearn.ensemble import RandomForestRegressor
 
 # Todo: Try different estimaor: kernelized ridge&lass with rbf kernel
 # Todo: Try XGBoost -> Problem Euler
@@ -53,6 +55,9 @@ X_test = pd.read_csv('raw/X_test.csv', index_col='id')
 X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
+# Fill missing data from collumn
+X_test.fillna(X_train.median(), inplace=True)
+
 # Reduce Data for debugging
 if 1:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
@@ -70,22 +75,34 @@ missing_value_df.sort_values('percent_missing', inplace=True)
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
     ('impute', SimpleImputer()),
+    ('remove const cloumns', VarianceThreshold(threshold=0)),
     ('outlier', 'passthrough'),
     ('scale', 'passthrough'),
-    ('selection', SelectKBest(f_regression)),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
+    ('selection', 'passthrough'),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
     ('estimation', SVR())
 ])
 
+
 # Specify parameters to be searched over
 param_grid = [
+    # Feature selection: SelectKBest
     {
         'scale': [RobustScaler(), StandardScaler()],
         'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
         'impute__strategy': ['mean', 'median'],
-        'selection__k': [90, 100, 110],
+        'selection': [SelectKBest(f_regression)],
+        'selection__k': [80, 90, 100, 110],
         'estimation__kernel': ['rbf'],
-        'estimation__C': [10, 50, 100, 500, 1000]
-
+        'estimation__C': [10, 50, 100]
+    },
+    {
+        'scale': [RobustScaler(), StandardScaler()],
+        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
+        'impute__strategy': ['mean', 'median'],
+        'selection': [SelectFpr(score_func=f_regression)],
+        'selection__alpha':[0.0001, 0.01, 1, 10],
+        'estimation__kernel': ['rbf'],
+        'estimation__C': [10, 50, 100]
     }
 ]
 

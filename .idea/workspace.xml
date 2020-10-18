@@ -24,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/1_Project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -33,6 +34,9 @@
     <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/1_Project" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/1_Project" />
     </key>
@@ -97,7 +101,7 @@
       <updated>1601909632065</updated>
       <workItem from="1601909635023" duration="4217000" />
       <workItem from="1601949381138" duration="21499000" />
-      <workItem from="1602702781271" duration="4140000" />
+      <workItem from="1602702781271" duration="11354000" />
     </task>
     <servers />
   </component>
@@ -177,6 +181,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="189" y="143" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1280.800@0.0.1280.800" timestamp="1602694176039" />
+    <state x="221" y="125" width="837" height="550" key="find.popup" timestamp="1603024147792">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="221" y="125" width="837" height="550" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1603024147792" />
     <state x="945" y="331" key="search.everywhere.popup" timestamp="1601918229616">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
