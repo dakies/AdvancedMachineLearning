@@ -14,7 +14,7 @@ from sklearn.ensemble import IsolationForest
 
 from sklearn.preprocessing import StandardScaler, RobustScaler
 
-from sklearn.feature_selection import SelectKBest, f_regression, VarianceThreshold, SelectFpr
+from sklearn.feature_selection import SelectKBest, f_regression, VarianceThreshold, SelectFpr, GenericUnivariateSelect
 
 from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor
@@ -59,7 +59,7 @@ y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 X_test.fillna(X_train.median(), inplace=True)
 
 # Reduce Data for debugging
-if 1:
+if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
     del a, b
     print('Debug mode on')
@@ -78,7 +78,7 @@ pipe = Pipeline([
     ('remove const cloumns', VarianceThreshold(threshold=0)),
     ('outlier', 'passthrough'),
     ('scale', 'passthrough'),
-    ('selection', 'passthrough'),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
+    ('selection', GenericUnivariateSelect()),  # Known bug: https://github.com/scikit-learn/scikit-learn/issues/15672
     ('estimation', SVR())
 ])
 
@@ -89,18 +89,30 @@ param_grid = [
     {
         'scale': [RobustScaler(), StandardScaler()],
         'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
-        'impute__strategy': ['mean', 'median'],
-        'selection': [SelectKBest(f_regression)],
-        'selection__k': [80, 90, 100, 110],
+        'impute__strategy': ['median'],
+        'selection__mode': ['k_best'],
+        'selection__param': [85, 90, 95, 100],
+        'selection__score_func': [f_regression],
         'estimation__kernel': ['rbf'],
         'estimation__C': [10, 50, 100]
     },
     {
         'scale': [RobustScaler(), StandardScaler()],
         'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
-        'impute__strategy': ['mean', 'median'],
-        'selection': [SelectFpr(score_func=f_regression)],
-        'selection__alpha':[0.0001, 0.01, 1, 10],
+        'impute__strategy': ['median'],
+        'selection__mode': ['fpr'],
+        'selection__param':[0.00005, 0.0001, 0.001, 1],
+        'selection__score_func': [f_regression],
+        'estimation__kernel': ['rbf'],
+        'estimation__C': [10, 50, 100]
+    },
+    {
+        'scale': [RobustScaler(), StandardScaler()],
+        'outlier': [FunctionSampler(func=lof), FunctionSampler(func=isof)],
+        'impute__strategy': ['median'],
+        'selection__mode': ['fdr'],
+        'selection__param':[0.00005, 0.0001, 0.001, 1],
+        'selection__score_func': [f_regression],
         'estimation__kernel': ['rbf'],
         'estimation__C': [10, 50, 100]
     }
