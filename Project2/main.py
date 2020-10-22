@@ -52,8 +52,8 @@ if 0:
 pipe = Pipeline([
     # the scale stage is populated by the param_grid
     ('remove const cloumns', VarianceThreshold(threshold=0)),
-   # ('outlier', 'passthrough'),
-   # ('sample', 'passthrough'),
+    ('outlier', 'passthrough'),
+    ('sample', 'passthrough'),
     ('scale', StandardScaler()),
     ('selection', GenericUnivariateSelect()),
     ('estimation', 'passthrough')
@@ -71,8 +71,8 @@ param_grid = [
     #     'estimation__C': [0.001, 0.01, 0.1, 10]
     # },
     {
-       # 'outlier': [FunctionSampler(func=isof), FunctionSampler(func=lof)],  #
-       # 'sample': [RandomOverSampler(), RandomUnderSampler(), SMOTEENN(), SMOTETomek()],  #
+        'outlier': [FunctionSampler(func=isof), FunctionSampler(func=lof)],  #
+        'sample': [RandomOverSampler(), RandomUnderSampler(), SMOTEENN(), SMOTETomek()],  #
         'selection__mode': ['fpr', 'fdr', 'fwe'],
         'selection__param': [ 0.0001, 0.001, 1],
         'estimation': [SVC(class_weight='balanced', decision_function_shape='ovo')],
