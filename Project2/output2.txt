@@ -1,0 +1,90 @@
+Sender: LSF System <lsfadmin@eu-g1-009-3>
+Subject: Job 149030576: <python3 main.py> in cluster <euler> Done
+
+Job <python3 main.py> was submitted from host <eu-login-40> by user <daniekie> in cluster <euler> at Sat Oct 24 13:43:41 2020
+Job was executed on host(s) <40*eu-g1-009-3>, in queue <normal.4h>, as user <daniekie> in cluster <euler> at Sat Oct 24 13:44:06 2020
+</cluster/home/daniekie> was used as the home directory.
+</cluster/home/daniekie/Project2> was used as the working directory.
+Started at Sat Oct 24 13:44:06 2020
+Terminated at Sat Oct 24 13:44:32 2020
+Results reported at Sat Oct 24 13:44:32 2020
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python3 main.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   81.00 sec.
+    Max Memory :                                 2474 MB
+    Average Memory :                             194.33 MB
+    Total Requested Memory :                     40960.00 MB
+    Delta Memory :                               38486.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   55 sec.
+    Turnaround time :                            51 sec.
+
+The output (if any) follows:
+
+Performing grid search...
+pipeline: ['remove const cloumns', 'outlier', 'sample', 'selection', 'scale', 'estimation']
+parameters:
+[{'estimation': [SVC(class_weight='balanced', decision_function_shape='ovo')],
+  'estimation__C': array([  1.        ,   4.64158883,  21.5443469 , 100.        ]),
+  'estimation__gamma': ['auto'],
+  'estimation__kernel': ['rbf'],
+  'outlier': [FunctionSampler(func=<function isof at 0x2b13a9fc1598>)],
+  'sample': [RandomUnderSampler()],
+  'selection__mode': ['fwe'],
+  'selection__param': [0.1]}]
+Fitting 2 folds for each of 4 candidates, totalling 8 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 40 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   8 | elapsed:    7.3s remaining:   21.9s
+[Parallel(n_jobs=-1)]: Done   3 out of   8 | elapsed:    7.3s remaining:   12.2s
+[Parallel(n_jobs=-1)]: Done   4 out of   8 | elapsed:    7.6s remaining:    7.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   8 | elapsed:    7.6s remaining:    4.6s
+[Parallel(n_jobs=-1)]: Done   6 out of   8 | elapsed:    7.7s remaining:    2.6s
+[Parallel(n_jobs=-1)]: Done   8 out of   8 | elapsed:    7.8s remaining:    0.0s
+[Parallel(n_jobs=-1)]: Done   8 out of   8 | elapsed:    7.8s finished
+Done in 14.504s
+
+Best balanced_accuracy score:  0.6939959770745472
+Best parameters set: {'estimation': SVC(C=4.641588833612778, class_weight='balanced', decision_function_shape='ovo',
+    gamma='auto'), 'estimation__C': 4.641588833612778, 'estimation__gamma': 'auto', 'estimation__kernel': 'rbf', 'outlier': FunctionSampler(func=<function isof at 0x2b13a9fc1598>), 'sample': RandomUnderSampler(), 'selection__mode': 'fwe', 'selection__param': 0.1}
+
+Grid scores on development set:
+
+0.691 (+/-0.017) for {'estimation': SVC(C=4.641588833612778, class_weight='balanced', decision_function_shape='ovo',
+    gamma='auto'), 'estimation__C': 1.0, 'estimation__gamma': 'auto', 'estimation__kernel': 'rbf', 'outlier': FunctionSampler(func=<function isof at 0x2b13a9fc1598>), 'sample': RandomUnderSampler(), 'selection__mode': 'fwe', 'selection__param': 0.1}
+0.694 (+/-0.005) for {'estimation': SVC(C=4.641588833612778, class_weight='balanced', decision_function_shape='ovo',
+    gamma='auto'), 'estimation__C': 4.641588833612778, 'estimation__gamma': 'auto', 'estimation__kernel': 'rbf', 'outlier': FunctionSampler(func=<function isof at 0x2b13a9fc1598>), 'sample': RandomUnderSampler(), 'selection__mode': 'fwe', 'selection__param': 0.1}
+0.687 (+/-0.015) for {'estimation': SVC(C=4.641588833612778, class_weight='balanced', decision_function_shape='ovo',
+    gamma='auto'), 'estimation__C': 21.544346900318832, 'estimation__gamma': 'auto', 'estimation__kernel': 'rbf', 'outlier': FunctionSampler(func=<function isof at 0x2b13a9fc1598>), 'sample': RandomUnderSampler(), 'selection__mode': 'fwe', 'selection__param': 0.1}
+0.684 (+/-0.009) for {'estimation': SVC(C=4.641588833612778, class_weight='balanced', decision_function_shape='ovo',
+    gamma='auto'), 'estimation__C': 100.0, 'estimation__gamma': 'auto', 'estimation__kernel': 'rbf', 'outlier': FunctionSampler(func=<function isof at 0x2b13a9fc1598>), 'sample': RandomUnderSampler(), 'selection__mode': 'fwe', 'selection__param': 0.1}
+
+
+Results saved as prediction.csv
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=21.544346900318832, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b238cf66f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=21.544346900318832, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b238cf66f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.695, total=   4.5s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=100.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b774d8d7f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=100.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b774d8d7f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.688, total=   4.6s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=4.641588833612778, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2af4f8118f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=4.641588833612778, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2af4f8118f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.691, total=   4.6s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=1.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b8e636b9f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=1.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b8e636b9f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.682, total=   4.8s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=21.544346900318832, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b2c2c2a4f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=21.544346900318832, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b2c2c2a4f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.680, total=   4.8s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=100.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b904b166f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=100.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b904b166f28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.680, total=   4.9s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=1.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b45acbabf28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=1.0, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2b45acbabf28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.699, total=   4.9s
+[CV] estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=4.641588833612778, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2aecbb6cdf28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1 
+[CV]  estimation=SVC(class_weight='balanced', decision_function_shape='ovo'), estimation__C=4.641588833612778, estimation__gamma=auto, estimation__kernel=rbf, outlier=FunctionSampler(func=<function isof at 0x2aecbb6cdf28>), sample=RandomUnderSampler(), selection__mode=fwe, selection__param=0.1, score=0.697, total=   5.1s

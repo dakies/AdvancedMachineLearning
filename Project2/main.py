@@ -2,6 +2,7 @@ import logging
 from pprint import pprint
 from time import time
 import pandas as pd
+import numpy as np
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
@@ -44,7 +45,7 @@ y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
 if 0:
-    [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.99)
+    [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.999)
     del a, b
     print('Debug mode on')
 
@@ -54,8 +55,8 @@ pipe = Pipeline([
     ('remove const cloumns', VarianceThreshold(threshold=0)),
     ('outlier', 'passthrough'),
     ('sample', 'passthrough'),
-    ('scale', StandardScaler()),
     ('selection', GenericUnivariateSelect()),
+    ('scale', StandardScaler()),
     ('estimation', 'passthrough')
 ])
 
@@ -71,14 +72,24 @@ param_grid = [
     #     'estimation__C': [0.001, 0.01, 0.1, 10]
     # },
     {
-        'outlier': [FunctionSampler(func=isof), FunctionSampler(func=lof)],  #
-        'sample': [RandomOverSampler(), RandomUnderSampler(), SMOTEENN(), SMOTETomek()],  #
-        'selection__mode': ['fpr', 'fdr', 'fwe'],
-        'selection__param': [ 0.0001, 0.001, 1],
+        'outlier': [FunctionSampler(func=isof)],  #, FunctionSampler(func=lof)
+        'sample': [RandomUnderSampler()],  #RandomOverSampler(), , SMOTEENN(), SMOTETomek()
+        'selection__mode': ['fwe'], #'fpr', 'fdr',
+        'selection__param': [0.1],
         'estimation': [SVC(class_weight='balanced', decision_function_shape='ovo')],
         'estimation__kernel': ['rbf'],
-        'estimation__C': [0.001, 0.01, 0.1, 10]
-    }#,
+        'estimation__C': np.logspace(0, 2, num=4),
+        'estimation__gamma':  ['auto']
+    } #, {
+    #     'outlier': [FunctionSampler(func=isof), FunctionSampler(func=lof)],  #
+    #     'sample': [RandomOverSampler(), RandomUnderSampler(), SMOTEENN(), SMOTETomek()],  #
+    #     'selection__mode': ['percentile'],
+    #     'selection': [GenericUnivariateSelect(f_classif)],
+    #     'selection__param': [10, 30, 50],
+    #     'estimation': [SVC(class_weight='balanced', decision_function_shape='ovo')],
+    #     'estimation__kernel': ['rbf'],
+    #     'estimation__C': [0.001, 0.01, 0.1, 10]
+    # } # ,
     # {
     #     'outlier': [FunctionSampler(func=isof)],  # , FunctionSampler(func=lof)
     #     'sample': [RandomOverSampler()],  # , SMOTE(), ADASYN()
@@ -109,7 +120,7 @@ param_grid = [
 ]
 
 # Gridsearch
-search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='balanced_accuracy', cv=2)
+search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='balanced_accuracy', cv=2, verbose=10)
 print("Performing grid search...")
 print("pipeline:", [name for name, _ in pipe.steps])
 print("parameters:")
