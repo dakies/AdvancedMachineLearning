@@ -1,0 +1,773 @@
+Performing grid search...
+pipeline: ['remove const cloumns', 'outlier', 'sample', 'selection', 'scale', 'model']
+parameters:
+{'model': [SVC(class_weight='balanced', decision_function_shape='ovo')],
+ 'model__C': Real(low=1e-06, high=1000000.0, prior='log-uniform', transform='identity'),
+ 'model__gamma': Categorical(categories=('auto',), prior=None),
+ 'model__kernel': Categorical(categories=('rbf',), prior=None),
+ 'outlier': Categorical(categories=(FunctionSampler(func=<function isof at 0x2b2987c0d7b8>),), prior=None),
+ 'sample': Categorical(categories=(RandomUnderSampler(),), prior=None),
+ 'selection__mode': ['fwe', 'fpr', 'fdr'],
+ 'selection__param': Real(low=0.01, high=100.0, prior='log-uniform', transform='identity')}
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   10.6s remaining:   15.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   11.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    9.0s remaining:   13.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.4s remaining:   12.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    9.4s remaining:   14.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   10.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.5s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.3s remaining:   10.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.3s remaining:   11.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.3s remaining:   11.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.3s remaining:   10.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.7s remaining:   11.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.3s remaining:    9.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.9s remaining:   11.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.2s remaining:    9.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.5s remaining:    9.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.6s remaining:    9.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.5s remaining:    9.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.5s remaining:    9.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.6s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.2s remaining:    9.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.2s remaining:    9.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.6s remaining:    9.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.5s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.6s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.5s remaining:   11.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.5s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.4s remaining:   11.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.7s remaining:   11.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.8s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.1s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.7s remaining:   10.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.1s remaining:   10.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.6s remaining:   11.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.6s remaining:    9.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.0s remaining:   10.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.5s remaining:   11.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.3s remaining:   12.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.2s remaining:   10.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    6.9s remaining:   10.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    7.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   50.8s remaining:  1.3min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   56.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   35.9s remaining:   53.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   41.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   57.1s remaining:  1.4min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   32.6s remaining:   49.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   33.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   55.7s remaining:  1.4min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   48.2s remaining:  1.2min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   56.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   16.7s remaining:   25.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   18.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   56.4s remaining:  1.4min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.0min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   40.6s remaining:  1.0min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   43.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   21.6s remaining:   32.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   25.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.6s remaining:   12.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   58.0s remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   47.1s remaining:  1.2min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   55.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   20.4s remaining:   30.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   23.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   17.3s remaining:   26.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   18.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   20.9s remaining:   31.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   22.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   38.1s remaining:   57.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   41.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   46.4s remaining:  1.2min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   54.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.4s remaining:   12.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   39.1s remaining:   58.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   41.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.5s remaining:   12.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   59.6s remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.8s remaining:   11.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.3s remaining:   12.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   41.5s remaining:  1.0min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   46.1s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   37.6s remaining:   56.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   41.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   49.6s remaining:  1.2min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   54.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   46.7s remaining:  1.2min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   55.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    9.1s remaining:   13.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   14.0s remaining:   20.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   15.0s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   21.5s remaining:   32.3s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   22.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   58.5s remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   50.6s remaining:  1.3min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   55.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.3s remaining:   12.5s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    9.3s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.9s remaining:   11.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.0s remaining:   12.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.5s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   57.8s remaining:  1.4min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   39.1s remaining:   58.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   42.4s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   58.8s remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.9s remaining:   11.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.3s remaining:   12.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.7s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.1s remaining:   12.2s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.6s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.9s remaining:   11.9s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.7s remaining:   11.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.0s remaining:   12.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:   12.3s remaining:   18.4s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   12.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.8s remaining:   11.8s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:  1.0min remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.1min finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    7.8s remaining:   11.7s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.9s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 20 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    8.0s remaining:   12.0s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    8.8s finished
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Done in 2739.633s
+
+Best balanced_accuracy score:  0.7152341122093119
+Best parameters set: OrderedDict([('model', SVC(C=1.9906986656207977, class_weight='balanced',
+    decision_function_shape='ovo', gamma='auto')), ('model__C', 1.9906986656207977), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a57b8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+
+Grid scores on development set:
+
+0.624 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 7.679195485934273e-06), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca79d8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 72.7471620851076)])
+0.653 (+/-0.040) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.15540130948065511), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d158>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 0.5054962074873797)])
+0.678 (+/-0.061) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 32.74722457944122), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d2b730>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.2519302304901514)])
+0.681 (+/-0.047) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 28953.309397589874), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc8ae8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 10.70682461226096)])
+0.688 (+/-0.045) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1547.9183844346408), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc8510>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.038320293524392465)])
+0.688 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 890.8444885233699), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 6.172318185893358)])
+0.680 (+/-0.045) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 30212.526241042764), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162f28>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 1.8730608329542204)])
+0.637 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.054996908855704435), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881700d0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 62.760345371058)])
+0.681 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2857.496219074652), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d378>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 1.1787849103132786)])
+0.630 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.02625081685898189), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 0.15357119327085333)])
+0.687 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881622f0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.676 (+/-0.047) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 312190.7269256987), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162048>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.01478986776038776)])
+0.673 (+/-0.023) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 128.63104146887574), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.675 (+/-0.042) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca7bf8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.01)])
+0.684 (+/-0.042) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 3621.687474509332), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170d90>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.672 (+/-0.023) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 976980.3011460745), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162950>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 2.92060105237621)])
+0.679 (+/-0.047) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 14131.007051927945), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc81e0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.013317801318794967)])
+0.680 (+/-0.042) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1129.3126519965406), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162158>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.686 (+/-0.046) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 819.2875096071641), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170620>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.011571194950180955)])
+0.678 (+/-0.051) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 49.73038815737126), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca76a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.013453847001647574)])
+0.676 (+/-0.042) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 10367.689052305863), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170e18>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.011280305969914162)])
+0.676 (+/-0.025) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 776.695211947259), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881626a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.01)])
+0.680 (+/-0.044) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 978373.0586802934), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d0d840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 7.511845886187339)])
+0.678 (+/-0.061) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1845.2038416246396), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5268>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.682 (+/-0.049) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1493.4910655279052), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881707b8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.683 (+/-0.040) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 16.4523780860559), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca7598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 97.01440511856983)])
+0.691 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 6.597627664289691), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181620>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.010061194687674073)])
+0.705 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.6656370126594107), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d0d6a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.011606258583354397)])
+0.705 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.836785016900061), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc80d0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 65.89576835708434)])
+0.709 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.6116486570692403), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181730>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 38.71240726384753)])
+0.626 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.0004006601120120102), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881812f0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 47.069623349160814)])
+0.624 (+/-0.025) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.0014443669142366e-06), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988170ae8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.010622110190188848)])
+0.709 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.799724912605806), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d6a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.699 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.0099695644746087), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc8598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.022226651439449466)])
+0.709 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0635571153501395), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881709d8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.700 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.96306781288625), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5510>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 71.0567299486612)])
+0.700 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.1506612384296464), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d0d620>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.01109612792524647)])
+0.709 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.5461566072954525), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc8048>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.011805704334675447)])
+0.705 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.0646773044174995), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162b70>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 26.66923341432512)])
+0.690 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 112314.8778169679), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca7840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 41.02129962006194)])
+0.700 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.5795757949606024), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181bf8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.01061697264737938)])
+0.701 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.1131092340049018), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5400>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 90.86771426704283)])
+0.708 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9055261594495176), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc8c80>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.701 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 4.143606753889664), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b29881817b8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 88.03742535721913)])
+0.693 (+/-0.050) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.8110509575335655), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5e18>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 82.47121320900303)])
+0.701 (+/-0.022) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0621793537280153), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c96a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.703 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.978551909066344), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987ca7ae8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.010740944018774389)])
+0.626 (+/-0.029) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.0027800603361885843), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5950>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 66.1146194159308)])
+0.703 (+/-0.043) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.7415231412195418), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9d08>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.010136659304423113)])
+0.710 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0295208875834243), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a56a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.702 (+/-0.016) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.037546541164399), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9400>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.706 (+/-0.036) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0178427574278577), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7268>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.704 (+/-0.023) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0109899360122476), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181048>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.627 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 6.131209694099885e-05), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d8c8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.011398814830484084)])
+0.707 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0056070262605905), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.705 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.001720282255604), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a50d0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.708 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9940596347021904), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cc88c8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.709 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9924042737776089), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9ea0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.707 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9950610325061928), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d400>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.689 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 219676.427512995), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181ae8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 85.61784606042606)])
+0.706 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9906054812239877), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a79d8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.705 (+/-0.029) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9843613308320363), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5b70>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.705 (+/-0.029) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.977710851269576), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.705 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.7528785722940032), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5a60>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.010133931152877718)])
+0.708 (+/-0.021) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9682362329219356), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9b70>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.710 (+/-0.029) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.967377226506313), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.699 (+/-0.046) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 6.026390849259654), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7e18>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 79.53155293764522)])
+0.703 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.055209172590985), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2dbae8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.713 (+/-0.036) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0062729063528764), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c90d0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.711 (+/-0.038) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9905103553080286), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5400>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.707 (+/-0.036) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9814732777386044), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.704 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9817701160522971), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5ea0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.715 (+/-0.030) for OrderedDict([('model', SVC(C=1.9906986656207977, class_weight='balanced',
+    decision_function_shape='ovo', gamma='auto')), ('model__C', 1.9906986656207977), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a57b8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.707 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9829897167708177), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db730>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.676 (+/-0.038) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 82228.72664623987), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7f28>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.013434039035880214)])
+0.707 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.053353530213069), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9e18>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.705 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.050281471364472), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db620>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.706 (+/-0.022) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0450790392374287), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181510>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.707 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.040834863471863), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987cde1e0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.708 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.037359134311586), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5e18>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.684 (+/-0.041) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 222.2833808937321), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9f28>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 0.010212233893487374)])
+0.702 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.039023583248633), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7510>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.705 (+/-0.017) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0357182833643863), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f40d0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.692 (+/-0.018) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.0320184449948475), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7730>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.681 (+/-0.048) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 7.239318448946024), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9268>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 0.010497049146967913)])
+0.710 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9486580958239204), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4840>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.704 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9458648572929331), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2987d1d510>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.704 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9484933424068862), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.708 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.951170529869968), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f46a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.705 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9504644404439213), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db1e0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.701 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9520988388178349), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a7ea0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.689 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.5913163790115563), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4bf8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 0.010266650917607029)])
+0.703 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9537858035742348), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3488>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.703 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9563287083372325), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db6a8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.703 (+/-0.025) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9179034969427893), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4400>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 100.0)])
+0.699 (+/-0.038) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9700286077509936), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3bf8>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 100.0)])
+0.688 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 11731.39159194392), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988162598>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fdr'), ('selection__param', 91.36386875849202)])
+0.686 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 369332.92282584374), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5ea0>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fpr'), ('selection__param', 94.70634643722954)])
+0.676 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 335.32795959076816), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7048>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 99.85157179286398)])
+0.693 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.4983169206013039), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5d90>)), ('sample', RandomUnderSampler()), ('selection__mode', 'fwe'), ('selection__param', 91.61393480854572)])
+0.627 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.0005790029459537307), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4598>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 365)])
+0.626 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.01934878778177341), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3268>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 683)])
+0.625 (+/-0.052) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.5642228702207746e-06), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3048>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 132)])
+0.674 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1896.9363100317353), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f79d8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 737)])
+0.621 (+/-0.029) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.0010614228421459598), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388620>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 165)])
+0.693 (+/-0.021) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.2122951014735612), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5840>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 470)])
+0.707 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.2093794363131636), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5a5730>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 929)])
+0.646 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 16.317614076707812), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3620>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 220)])
+0.623 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.003392475684356679), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4e18>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 638)])
+0.702 (+/-0.037) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.138013412555314), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b2988181b70>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 855)])
+0.677 (+/-0.045) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 44501.942130453055), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a386158>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.542 (+/-0.042) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4a60>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 20)])
+0.677 (+/-0.036) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f70d0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 461)])
+0.682 (+/-0.023) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388ea0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 878)])
+0.625 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1e-06), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388510>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 928)])
+0.678 (+/-0.045) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 128.39501026064215), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3f28>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 889)])
+0.675 (+/-0.055) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 12.62206089454477), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a3862f0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 661)])
+0.672 (+/-0.026) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 487.7839551291816), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f31e0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 478)])
+0.635 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.055583568410794086), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7268>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.677 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 132367.91708082941), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db950>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 650)])
+0.690 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 7.860691566489116), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a367510>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.666 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.31081562079498365), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388840>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 211)])
+0.706 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.2843096513820318), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f72f0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.689 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1494.6201663313764), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a3860d0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.691 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.8924156925796795), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7d90>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 599)])
+0.670 (+/-0.050) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a386c80>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 658)])
+0.659 (+/-0.025) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 15557.416053442017), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a367158>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 433)])
+0.624 (+/-0.035) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1e-06), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2dbd08>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 520)])
+0.624 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 9.2831720623503e-05), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5840>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.702 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.2850101290456395), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a3677b8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 940)])
+0.699 (+/-0.020) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.6146104601869826), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a5c9510>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 872)])
+0.539 (+/-0.018) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 859.3184129851684), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7950>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 20)])
+0.670 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.24666833334002605), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2db488>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 426)])
+0.688 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1000000.0), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7f28>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.709 (+/-0.031) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.7328369801908245), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f32f0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.710 (+/-0.034) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.7858391464381558), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a367d90>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.630 (+/-0.027) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 0.05260893722172928), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388d90>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 20)])
+0.623 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 3.1469272452865986e-05), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a1a5048>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 644)])
+0.620 (+/-0.039) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 2.168343141270028), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2dbd90>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 22)])
+0.712 (+/-0.033) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.7776934702992166), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a386bf8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.702 (+/-0.028) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.803735707411389), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f3ea0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.707 (+/-0.045) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.5774637113437484), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a367ea0>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.703 (+/-0.044) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.6523894285923233), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f7e18>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.704 (+/-0.024) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.8142128587171473), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a388b70>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.709 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.5730806962320147), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a36c378>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.700 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.5659479298837293), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a35bd08>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 961)])
+0.708 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9952571881990964), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f78c8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.616 (+/-0.043) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 5.545135971581773e-05), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a36cbf8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 25)])
+0.706 (+/-0.032) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.9727141117733349), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a35b6a8>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+0.705 (+/-0.030) for OrderedDict([('model', SVC(class_weight='balanced', decision_function_shape='ovo')), ('model__C', 1.4366865446449135), ('model__gamma', 'auto'), ('model__kernel', 'rbf'), ('outlier', FunctionSampler(func=<function isof at 0x2b298a2f4488>)), ('sample', RandomUnderSampler()), ('selection', RFE(estimator=DecisionTreeClassifier(), step=10)), ('selection__n_features_to_select', 1000)])
+
+
+Results saved as prediction.csv
