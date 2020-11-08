@@ -4,11 +4,10 @@ import tensorflow.keras.backend as K
 from keras import optimizers, utils, initializers, callbacks
 from keras.models import Sequential
 from keras.layers import Activation, LeakyReLU, Dense, Dropout, BatchNormalization
-# from imblearn.keras import BalancedBatchGenerator
-# from imblearn.combine import SMOTEENN
-from sklearn.model_selection import train_test_split
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import RobustScaler
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import balanced_accuracy_score, make_scorer, classification_report
 from sklearn.utils import class_weight
 import time
 
@@ -16,84 +15,77 @@ np.random.seed(0)
 
 
 class Config:
-    # TODO: Grid search for all these parameters
-
     VALID_RATIO = 0.2
-    EPOCHS = 100
+    EPOCHS = 500
     QUANTILE_RANGE = (25.0, 75.0)
-    LEARNING_RATE = 1e-3
-    ACTIVATION = LeakyReLU
-    # NEURONS = [256, 64, 16]
-    # DROPOUT = [0.4, 0.2, 0.1]
-    NEURONS = [64]
-    INPUT_DROPOUT = 0.5
-    DROPOUT = [0.3]
-    DROPOUT_DEFAULT = 0.25
-    INITIALISER = initializers.he_uniform()
     EARLY_STOPPING = 25
+    CROSS_VAL = 4
+    VERBOSE = 0
 
     # TODO: Test different samplers - SMOTE, SMOTEENN, SMOTETomek, under sampling
     # SAMPLER = SMOTEENN()
+
+
+Params = {'NEURONS': [(128, 32, 16)],
+          'DROPOUT': [.2],
+          'ACTIVATION': ['relu'],
+          'INPUT_DROPOUT': [0.3],
+          'LEARNING_RATE': [1e-3],
+          'INITIALISER': ['he_uniform']}
+# Params = {'NEURONS': [(128, 32, 16), (128, 32), (128, 16), (64, 16), (64, 8), (64,), (32,)],
+#           'DROPOUT': np.linspace(0.1, 0.3, 3),
+#           'ACTIVATION': ['relu', 'tanh'],
+#           'INPUT_DROPOUT': np.linspace(0.0, 0.3, 4),
+#           'LEARNING_RATE': np.logspace(-4., -2., 3),
+#           'INITIALISER': ['he_uniform']}
 
 
 def print_done():
     print('Done')
 
 
-# TODO: Fix this - not same as sklearn
-def balanced_accuracy(y_true, y_pred_onehot):
+def balanced_accuracy(y_true_onehot, y_pred_onehot):
     """
-    Computes the average per-column recall metric
-    for a multi-class classification problem
+    Computes the balanced accuracy metric for a multi-class classification problem
+    https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score
     """
-    y_true_onehot = utils.to_categorical(y_true)
-    # y_pred = K.cast(K.argmax(y_pred_onehot, axis=1), dtype='float32')
-    # true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)), axis=0)
-    # possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)), axis=0)
     true_positives = K.sum(K.round(K.clip(y_true_onehot * y_pred_onehot, 0, 1)), axis=0)
     possible_positives = K.sum(K.round(K.clip(y_true_onehot, 0, 1)), axis=0)
     sensitivity = true_positives / (possible_positives + K.epsilon())
-    true_negatives = K.sum(K.round(K.clip((1-y_true_onehot) * (1-y_pred_onehot), 0, 1)), axis=0)
-    possible_negatives = K.shape(y_true_onehot)[0] - possible_positives
+    true_negatives = K.sum(K.round(K.clip((1 - y_true_onehot) * (1 - y_pred_onehot), 0, 1)), axis=0)
+    possible_negatives = K.sum(K.round(K.clip(1 - y_true_onehot, 0, 1)), axis=0)
     specificty = true_negatives / (possible_negatives + K.epsilon())
     accuracy = 0.5 * (sensitivity + specificty)
-    bal_acc = K.mean(accuracy)
+    bal_acc = K.sum(accuracy * possible_positives) / K.sum(possible_positives)
     return bal_acc
 
 
-def create_network(n_features):
+def create_network(NEURONS, DROPOUT, ACTIVATION, INPUT_DROPOUT,
+                   LEARNING_RATE, INITIALISER, N_FEATURES):
+    init = initializers.he_uniform() if (INITIALISER == 'he_uniform') else INITIALISER
+
     model = Sequential()
-
-    # init = False
-    if len(Config.DROPOUT) != len(Config.NEURONS):
-        print("Dropout size doesn't match neuron layers, setting dropout to 0.25")
-        Config.DROPOUT = [Config.DROPOUT_DEFAULT for _ in Config.NEURONS]
-
-    model.add(Dropout(Config.INPUT_DROPOUT, input_shape=(n_features,)))
-    for neurons, dropout in zip(Config.NEURONS, Config.DROPOUT):
-        # if not init:
-        #     model.add(Dense(neurons, input_shape=(n_features,),
-        #                     kernel_initializer=Config.INITIALISER))
-        #     init = True
-        # else:
-        #     model.add(Dense(neurons, kernel_initializer=Config.INITIALISER,
-        #                     use_bias=False))
-        model.add(Dense(neurons, kernel_initializer=Config.INITIALISER,
+    model.add(Dropout(INPUT_DROPOUT, input_shape=(N_FEATURES,)))
+    for neurons_layer in NEURONS:
+        model.add(Dense(neurons_layer, kernel_initializer=init,
                         use_bias=False))
         model.add(BatchNormalization())
-        model.add(Config.ACTIVATION())
-        model.add(Dropout(dropout))
+        if ACTIVATION == 'leaky_relu':
+            model.add(LeakyReLU())
+        else:
+            model.add(Activation(ACTIVATION))
+        model.add(Dropout(DROPOUT))
 
     model.add(Dense(3, activation='softmax'))
-    model.compile(loss='sparse_categorical_crossentropy',
-                  optimizer=optimizers.Adam(lr=Config.LEARNING_RATE),
+    model.compile(loss='categorical_crossentropy',
+                  optimizer=optimizers.Adam(lr=LEARNING_RATE),
                   metrics=['accuracy', balanced_accuracy])
-    model.summary()
+    if Config.VERBOSE: model.summary()
     return model
 
 
 def create_early_stopping(monitor):
-    return callbacks.EarlyStopping(monitor=monitor, verbose=1,
+    return callbacks.EarlyStopping(monitor=monitor, verbose=Config.VERBOSE,
                                    patience=Config.EARLY_STOPPING, mode='max',
                                    restore_best_weights=True)
 
@@ -102,6 +94,10 @@ def calculate_accuracy(model, data, labels):
     train_pred = np.argmax(model.predict(data), axis=1)
     train_score = balanced_accuracy_score(labels, train_pred)
     print('Balanced accuracy score = {}'.format(train_score))
+
+
+def balanced_accuracy_metric(y_true, y_pred):
+    return balanced_accuracy_score(y_true=np.argmax(y_true, axis=1), y_pred=y_pred)
 
 
 # Load data
@@ -120,74 +116,53 @@ scaler = RobustScaler(quantile_range=Config.QUANTILE_RANGE)
 train_x_full_scaled = scaler.fit_transform(X_train_full)
 train_x_scaled = scaler.transform(train_x)
 valid_x_scaled = scaler.transform(valid_x)
+x_out_scaled = scaler.transform(X_out)
 class_weights = class_weight.compute_class_weight('balanced',
                                                   np.unique(Y_train_full),
                                                   np.squeeze(Y_train_full.to_numpy()))
+Params['N_FEATURES'] = [train_x.shape[1]]
 print_done()
 
 # Convert to categorical data
-# train_y_cat = utils.to_categorical(train_y)
-# valid_y_cat = utils.to_categorical(valid_y)
+train_y_cat = utils.to_categorical(train_y)
+valid_y_cat = utils.to_categorical(valid_y)
+train_y_full_cat = utils.to_categorical(Y_train_full)
 
-# Create network and save initial weights
-print('Creating network ...')
-network = create_network(train_x.shape[1])
-network.save_weights('init.h5')
+classifier = KerasClassifier(build_fn=create_network, verbose=Config.VERBOSE)
+scorer = make_scorer(balanced_accuracy_metric, greater_is_better=True)
+grid = GridSearchCV(estimator=classifier, param_grid=Params,
+                    scoring=scorer, cv=Config.CROSS_VAL)
+grid_result = grid.fit(X=train_x_scaled, y=train_y_cat, class_weight=class_weights,
+                       batch_size=train_x_scaled.shape[0], epochs=Config.EPOCHS,
+                       verbose=Config.VERBOSE, callbacks=[create_early_stopping('val_balanced_accuracy')],
+                       validation_data=(valid_x_scaled, valid_y_cat))
+best_model = grid_result.best_estimator_
 
-# Create generators for the datasets
-# print('Creating generators ... \t', end='')
-# train_generator = BalancedBatchGenerator(train_x_scaled, train_y,
-#                                          sampler=Config.SAMPLER,
-#                                          batch_size=Config.BATCH_SIZE)
-# valid_generator = BalancedBatchGenerator(valid_x_scaled, valid_y,
-#                                          sampler=Config.SAMPLER,
-#                                          batch_size=Config.BATCH_SIZE)
-# full_generator = BalancedBatchGenerator(train_x_full_scaled, Y_train_full,
-#                                         sampler=Config.SAMPLER,
-#                                         batch_size=Config.BATCH_SIZE)
-# print_done()
-
-# # Train network using generators and validate simultaneously
-# print('Training ...')
-# network.fit_generator(generator=train_generator, epochs=Config.EPOCHS,
-#                       steps_per_epoch=train_x.shape[0] // Config.BATCH_SIZE,
-#                       verbose=1, callbacks=[early_stopping],
-#                       validation_data=valid_generator, validation_steps=10)
-# print_done()
-#
-# # Reset weights and train with full data
-# network.load_weights('init.h5')
-# print('Training full ...')
-# network.fit_generator(generator=full_generator, epochs=Config.EPOCHS,
-#                       steps_per_epoch=train_x.shape[0] // Config.BATCH_SIZE,
-#                       verbose=1)
-# print_done()
-
-# Train network with full dataset and validate simultaneously
-print('Training ...')
-network.fit(x=train_x_scaled, y=train_y, class_weight=class_weights,
-            batch_size=train_x_scaled.shape[0], epochs=Config.EPOCHS,
-            verbose=1, callbacks=[create_early_stopping('val_balanced_accuracy')],
-            validation_data=(valid_x_scaled, valid_y))
-print("\nTraining - ", end='')
-calculate_accuracy(network, train_x_scaled, train_y)
-print("Validation - ", end='')
-calculate_accuracy(network, valid_x_scaled, valid_y)
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print("%f (%f) with: %r" % (mean, stdev, param))
 time.sleep(5.0)
 
-# # Reset weights and train with full data
-# network.load_weights('init.h5')
+# Train best estimator on whole data
 # print('Training full ...')
-# network.fit(x=train_x_full_scaled, y=Y_train_full, class_weight=class_weights,
-#             batch_size=train_x_full_scaled.shape[0],
-#             epochs=Config.EPOCHS, verbose=1,
-#             callbacks=[create_early_stopping('balanced_accuracy')])
-# calculate_accuracy(network, train_x_full_scaled, Y_train_full)
-#
-# # Perform final prediction
-# print('Final prediction ... \t', end='')
-# x_out_scaled = scaler.transform(X_out)
-# preds = network.predict(x_out_scaled)
-# Y_pred = pd.DataFrame(np.argmax(preds, axis=1))
-# Y_pred.to_csv('prediction_nn.csv', index_label='id', header=['y'], compression=None)
-# print('Results saved as prediction.csv')
+# best_model.fit(x=train_x_full_scaled, y=train_y_full_cat,
+#                class_weight=class_weights,
+#                batch_size=train_x_full_scaled.shape[0],
+#                epochs=Config.EPOCHS, verbose=Config.VERBOSE,
+#                callbacks=[create_early_stopping('balanced_accuracy')])
+train_y_pred = best_model.predict(train_x_scaled)
+print('Training report:')
+print(classification_report(y_true=train_y, y_pred=train_y_pred))
+val_y_pred = best_model.predict(valid_x_scaled)
+print('\nValidation report:')
+print(classification_report(y_true=valid_y, y_pred=val_y_pred))
+
+# Perform final prediction
+print('Final prediction ... \t', end='')
+preds = best_model.predict(x_out_scaled)
+Y_pred = pd.DataFrame(preds)
+Y_pred.to_csv('prediction_nn.csv', index_label='id', header=['y'], compression=None)
+print('Results saved as prediction.csv')
