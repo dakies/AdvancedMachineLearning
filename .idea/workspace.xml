@@ -28,6 +28,7 @@
       </list>
     </option>
   </component>
+  <component name="JupyterTrust" id="d7c568b4-4172-4d8c-ba8d-6ac2cf04357e" />
   <component name="ProjectId" id="1iSmzvVzy38v5s9HNiq3m34g13J" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -39,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Project2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ProjectsBerkay" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -47,7 +48,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -62,7 +63,7 @@
       <recent name="$PROJECT_DIR$/1_Project" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.dan">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="AML" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,64 +86,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="aur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AML" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project2/aur.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AML" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project2/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="neuralnet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AML" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project2/neuralnet.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tree" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dan" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AML" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,12 +94,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project3" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project2/tree.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project3/dan.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,12 +108,108 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="extract_features_aur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AML" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project3/extract_features_aur.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="feature_extr" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AML" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project3/feature_extr.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="forrest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AML" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project3/forrest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="xgb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AML" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project3/xgb.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.dan" />
+      <item itemvalue="Python.extract_features_aur" />
+      <item itemvalue="Python.feature_extr" />
+      <item itemvalue="Python.forrest" />
+      <item itemvalue="Python.xgb" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.neuralnet" />
-        <item itemvalue="Python.aur" />
-        <item itemvalue="Python.tree" />
+        <item itemvalue="Python.dan" />
+        <item itemvalue="Python.feature_extr" />
+        <item itemvalue="Python.xgb" />
+        <item itemvalue="Python.extract_features_aur" />
+        <item itemvalue="Python.forrest" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +232,12 @@
       <workItem from="1603124716173" duration="650000" />
       <workItem from="1603127165418" duration="4127000" />
       <workItem from="1603220350916" duration="20557000" />
-      <workItem from="1604586192980" duration="12212000" />
+      <workItem from="1604586192980" duration="12418000" />
+      <workItem from="1604908934631" duration="3745000" />
+      <workItem from="1604956276907" duration="2782000" />
+      <workItem from="1604999393932" duration="6073000" />
+      <workItem from="1605100153408" duration="787000" />
+      <workItem from="1605694272591" duration="34440000" />
     </task>
     <servers />
   </component>
@@ -205,9 +250,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="397" y="535" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603129871009">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state x="166" y="49" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604954109882">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="166" y="49" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1604954109882" />
     <state x="515" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1603120715319" />
     <state x="397" y="535" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1361@0.23.2560.1361" timestamp="1603129871009" />
     <state x="339" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602764212013">
@@ -222,6 +268,14 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="377" y="191" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.800@0.0.1280.800" timestamp="1602694147720" />
+    <state x="328" y="143" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1604956226584">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="328" y="143" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.800@0.0.1280.800" timestamp="1604956226584" />
+    <state x="176" y="234" width="927" height="331" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1606218484765">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="176" y="234" width="927" height="331" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1280.800@0.0.1280.800" timestamp="1606218484765" />
     <state x="997" y="353" key="#helper" timestamp="1603114019222">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -230,104 +284,122 @@
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="1187" y="425" key="#main2/0.23.2560.1361@0.23.2560.1361" timestamp="1603125552939" />
+    <state x="403" y="110" key="#xdebugger.evaluate" timestamp="1606314593200">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="403" y="110" key="#xdebugger.evaluate/0.0.1280.800@0.0.1280.800" timestamp="1606314593200" />
     <state x="1233" y="631" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603125055914">
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="1233" y="631" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2560.1361@0.23.2560.1361" timestamp="1603125055914" />
-    <state x="963" y="291" key="FileChooserDialogImpl" timestamp="1603115484516">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1280" height="438" key="DebuggerActiveHint" timestamp="1606324583478">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state width="1280" height="438" key="DebuggerActiveHint/0.0.1280.800@0.0.1280.800" timestamp="1606324583478" />
+    <state x="482" y="162" key="FileChooserDialogImpl" timestamp="1606218455286">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="482" y="162" key="FileChooserDialogImpl/0.0.1280.800@0.0.1280.800" timestamp="1606218455286" />
     <state x="963" y="291" key="FileChooserDialogImpl/0.0.2560.1440@0.0.2560.1440" timestamp="1603115484516" />
-    <state width="1238" height="326" key="GridCell.Tab.0.bottom" timestamp="1604593915989">
+    <state width="1238" height="260" key="GridCell.Tab.0.bottom" timestamp="1606334184873">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1604593915989" />
-    <state width="1238" height="326" key="GridCell.Tab.0.bottom/0.23.1280.730@0.23.1280.730" timestamp="1604593834910" />
+    <state width="1238" height="260" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606334184873" />
+    <state width="1238" height="326" key="GridCell.Tab.0.bottom/0.23.1280.730@0.23.1280.730" timestamp="1604959846204" />
     <state width="1238" height="266" key="GridCell.Tab.0.bottom/0.23.1280.732@0.23.1280.732" timestamp="1603227315595" />
-    <state width="1529" height="459" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370407" />
-    <state width="1238" height="326" key="GridCell.Tab.0.center" timestamp="1604593915987">
+    <state width="1238" height="213" key="GridCell.Tab.0.bottom/0.23.1280.733@0.23.1280.733" timestamp="1605717816666" />
+    <state width="1238" height="326" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817069" />
+    <state width="1238" height="260" key="GridCell.Tab.0.center" timestamp="1606334184872">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1604593915987" />
-    <state width="1238" height="326" key="GridCell.Tab.0.center/0.23.1280.730@0.23.1280.730" timestamp="1604593834906" />
+    <state width="1238" height="260" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1606334184872" />
+    <state width="1238" height="326" key="GridCell.Tab.0.center/0.23.1280.730@0.23.1280.730" timestamp="1604959846204" />
     <state width="1238" height="266" key="GridCell.Tab.0.center/0.23.1280.732@0.23.1280.732" timestamp="1603227315594" />
-    <state width="1529" height="459" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370407" />
-    <state width="1238" height="326" key="GridCell.Tab.0.left" timestamp="1604593915986">
+    <state width="1238" height="213" key="GridCell.Tab.0.center/0.23.1280.733@0.23.1280.733" timestamp="1605717816665" />
+    <state width="1238" height="326" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817067" />
+    <state width="1238" height="260" key="GridCell.Tab.0.left" timestamp="1606334184871">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1604593915986" />
-    <state width="1238" height="326" key="GridCell.Tab.0.left/0.23.1280.730@0.23.1280.730" timestamp="1604593834898" />
+    <state width="1238" height="260" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1606334184871" />
+    <state width="1238" height="326" key="GridCell.Tab.0.left/0.23.1280.730@0.23.1280.730" timestamp="1604959846203" />
     <state width="1238" height="266" key="GridCell.Tab.0.left/0.23.1280.732@0.23.1280.732" timestamp="1603227315593" />
-    <state width="1529" height="459" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370406" />
-    <state width="1238" height="326" key="GridCell.Tab.0.right" timestamp="1604593915988">
+    <state width="1238" height="213" key="GridCell.Tab.0.left/0.23.1280.733@0.23.1280.733" timestamp="1605717816665" />
+    <state width="1238" height="326" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817066" />
+    <state width="1238" height="260" key="GridCell.Tab.0.right" timestamp="1606334184873">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1604593915988" />
-    <state width="1238" height="326" key="GridCell.Tab.0.right/0.23.1280.730@0.23.1280.730" timestamp="1604593834909" />
+    <state width="1238" height="260" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1606334184873" />
+    <state width="1238" height="326" key="GridCell.Tab.0.right/0.23.1280.730@0.23.1280.730" timestamp="1604959846204" />
     <state width="1238" height="266" key="GridCell.Tab.0.right/0.23.1280.732@0.23.1280.732" timestamp="1603227315595" />
-    <state width="1529" height="459" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370407" />
-    <state width="1238" height="326" key="GridCell.Tab.1.bottom" timestamp="1604593915994">
+    <state width="1238" height="213" key="GridCell.Tab.0.right/0.23.1280.733@0.23.1280.733" timestamp="1605717816666" />
+    <state width="1238" height="326" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817068" />
+    <state width="1238" height="260" key="GridCell.Tab.1.bottom" timestamp="1606334184876">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1604593915994" />
-    <state width="1238" height="326" key="GridCell.Tab.1.bottom/0.23.1280.730@0.23.1280.730" timestamp="1604593738715" />
-    <state width="1238" height="266" key="GridCell.Tab.1.bottom/0.23.1280.732@0.23.1280.732" timestamp="1603227315597" />
-    <state width="1529" height="459" key="GridCell.Tab.1.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370408" />
-    <state width="1238" height="326" key="GridCell.Tab.1.center" timestamp="1604593915991">
+    <state width="1238" height="260" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606334184876" />
+    <state width="1238" height="326" key="GridCell.Tab.1.bottom/0.23.1280.730@0.23.1280.730" timestamp="1604959846206" />
+    <state width="1238" height="213" key="GridCell.Tab.1.bottom/0.23.1280.732@0.23.1280.732" timestamp="1605781865343" />
+    <state width="1238" height="213" key="GridCell.Tab.1.bottom/0.23.1280.733@0.23.1280.733" timestamp="1605707409908" />
+    <state width="1238" height="326" key="GridCell.Tab.1.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817072" />
+    <state width="1238" height="260" key="GridCell.Tab.1.center" timestamp="1606334184875">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1604593915991" />
-    <state width="1238" height="326" key="GridCell.Tab.1.center/0.23.1280.730@0.23.1280.730" timestamp="1604593738714" />
-    <state width="1238" height="266" key="GridCell.Tab.1.center/0.23.1280.732@0.23.1280.732" timestamp="1603227315596" />
-    <state width="1529" height="459" key="GridCell.Tab.1.center/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370408" />
-    <state width="1238" height="326" key="GridCell.Tab.1.left" timestamp="1604593915990">
+    <state width="1238" height="260" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1606334184875" />
+    <state width="1238" height="326" key="GridCell.Tab.1.center/0.23.1280.730@0.23.1280.730" timestamp="1604959846205" />
+    <state width="1238" height="213" key="GridCell.Tab.1.center/0.23.1280.732@0.23.1280.732" timestamp="1605781865341" />
+    <state width="1238" height="213" key="GridCell.Tab.1.center/0.23.1280.733@0.23.1280.733" timestamp="1605707409907" />
+    <state width="1238" height="326" key="GridCell.Tab.1.center/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817070" />
+    <state width="1238" height="260" key="GridCell.Tab.1.left" timestamp="1606334184874">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1604593915990" />
-    <state width="1238" height="326" key="GridCell.Tab.1.left/0.23.1280.730@0.23.1280.730" timestamp="1604593738714" />
-    <state width="1238" height="266" key="GridCell.Tab.1.left/0.23.1280.732@0.23.1280.732" timestamp="1603227315596" />
-    <state width="1529" height="459" key="GridCell.Tab.1.left/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370407" />
-    <state width="1238" height="326" key="GridCell.Tab.1.right" timestamp="1604593915992">
+    <state width="1238" height="260" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1606334184874" />
+    <state width="1238" height="326" key="GridCell.Tab.1.left/0.23.1280.730@0.23.1280.730" timestamp="1604959846205" />
+    <state width="1238" height="213" key="GridCell.Tab.1.left/0.23.1280.732@0.23.1280.732" timestamp="1605781865341" />
+    <state width="1238" height="213" key="GridCell.Tab.1.left/0.23.1280.733@0.23.1280.733" timestamp="1605707409906" />
+    <state width="1238" height="326" key="GridCell.Tab.1.left/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817070" />
+    <state width="1238" height="260" key="GridCell.Tab.1.right" timestamp="1606334184875">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="326" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1604593915992" />
-    <state width="1238" height="326" key="GridCell.Tab.1.right/0.23.1280.730@0.23.1280.730" timestamp="1604593738715" />
-    <state width="1238" height="266" key="GridCell.Tab.1.right/0.23.1280.732@0.23.1280.732" timestamp="1603227315596" />
-    <state width="1529" height="459" key="GridCell.Tab.1.right/0.23.2560.1361@0.23.2560.1361" timestamp="1603194370408" />
-    <state x="145" y="40" width="1218" height="779" key="SettingsEditor" timestamp="1604492591972">
+    <state width="1238" height="260" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1606334184875" />
+    <state width="1238" height="326" key="GridCell.Tab.1.right/0.23.1280.730@0.23.1280.730" timestamp="1604959846206" />
+    <state width="1238" height="213" key="GridCell.Tab.1.right/0.23.1280.732@0.23.1280.732" timestamp="1605781865342" />
+    <state width="1238" height="213" key="GridCell.Tab.1.right/0.23.1280.733@0.23.1280.733" timestamp="1605707409908" />
+    <state width="1238" height="326" key="GridCell.Tab.1.right/0.23.2560.1361@0.23.2560.1361" timestamp="1604712817071" />
+    <state x="145" y="40" width="1218" height="779" key="SettingsEditor" timestamp="1606217402410">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="149" y="-1081" key="SettingsEditor/0.0.1280.800/-640.-1440.2560.1440@-640.-1440.2560.1440" timestamp="1601910356089" />
-    <state x="145" y="40" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1604492591972" />
+    <state x="145" y="40" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1606217402410" />
     <state x="566" y="140" width="1218" height="779" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1603115586391" />
     <state x="149" y="-1081" key="SettingsEditor/0.23.1280.777/-640.-1440.2560.1440@-640.-1440.2560.1440" timestamp="1601910193411" />
     <state x="724" y="190" key="SettingsEditor/0.23.2560.1361@0.23.2560.1361" timestamp="1603127190566" />
-    <state width="640" height="400" key="XDebugger.FullValuePopup" timestamp="1604569582681">
+    <state width="640" height="400" key="XDebugger.FullValuePopup" timestamp="1605777431194">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="640" height="400" key="XDebugger.FullValuePopup/0.0.1280.800@0.0.1280.800" timestamp="1604569582681" />
+    <state width="640" height="400" key="XDebugger.FullValuePopup/0.0.1280.800@0.0.1280.800" timestamp="1605777431194" />
     <state x="168" y="112" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1602693296352">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="168" y="112" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.800@0.0.1280.800" timestamp="1602693296352" />
-    <state x="0" y="23" key="com.intellij.ide.util.TipDialog" timestamp="1604586219749">
+    <state x="0" y="23" key="com.intellij.ide.util.TipDialog" timestamp="1605694295789">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="0" y="23" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1604586219749" />
-    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1603114494156" />
+    <state x="0" y="23" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1605694295789" />
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1604908943098" />
     <state x="0" y="23" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1603220371313" />
     <state x="0" y="23" key="com.intellij.ide.util.TipDialog/0.23.2560.1361@0.23.2560.1361" timestamp="1603127166987" />
     <state x="189" y="143" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602694176039">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="189" y="143" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1280.800@0.0.1280.800" timestamp="1602694176039" />
-    <state x="221" y="125" width="837" height="550" key="find.popup" timestamp="1603024147792">
+    <state x="221" y="125" width="837" height="550" key="find.popup" timestamp="1606218716453">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="221" y="125" width="837" height="550" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1603024147792" />
-    <state x="945" y="331" key="search.everywhere.popup" timestamp="1601918229616">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="221" y="125" width="837" height="550" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606218716453" />
+    <state x="473" y="184" width="670" height="676" key="search.everywhere.popup" timestamp="1605005015963">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="473" y="184" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1605005015963" />
     <state x="945" y="331" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1601918229616" />
   </component>
   <component name="XDebuggerManager">
@@ -355,13 +427,32 @@
           <line>33</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Project3/extract_features_aur.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Project3/xgb.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Project3/dan.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AML$xgb.coverage" NAME="xgb Coverage Results" MODIFIED="1605781682238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project3" />
+    <SUITE FILE_PATH="coverage/AML$feature_extr.coverage" NAME="feature_extr Coverage Results" MODIFIED="1606313325886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project3" />
     <SUITE FILE_PATH="coverage/AML$main2.coverage" NAME="main2 Coverage Results" MODIFIED="1603127246878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project2" />
     <SUITE FILE_PATH="coverage/AML$proj2.coverage" NAME="proj2 Coverage Results" MODIFIED="1603129217448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project2" />
+    <SUITE FILE_PATH="coverage/AML$dan.coverage" NAME="dan Coverage Results" MODIFIED="1606324553083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project3" />
     <SUITE FILE_PATH="coverage/AML$neuralnet.coverage" NAME="neuralnet Coverage Results" MODIFIED="1604593886081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project2" />
-    <SUITE FILE_PATH="coverage/AML$main.coverage" NAME="main Coverage Results" MODIFIED="1604568807475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project2" />
+    <SUITE FILE_PATH="coverage/AML$main.coverage" NAME="main Coverage Results" MODIFIED="1605004634512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project3" />
+    <SUITE FILE_PATH="coverage/AML$extract_features.coverage" NAME="extract_features Coverage Results" MODIFIED="1605706739619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project3" />
   </component>
 </project>

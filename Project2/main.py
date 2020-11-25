@@ -20,6 +20,7 @@ from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 from skopt.plots import plot_objective, plot_histogram
 
+ #Submission
 
 def lof(x, y):
     model = LocalOutlierFactor()
@@ -44,7 +45,7 @@ X_train = pd.read_csv('raw/X_train.csv', index_col='id')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
 # Reduce Data for debugging
-evals = 100
+evals = 500
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.9)
     del a, b
@@ -66,7 +67,7 @@ pipe = Pipeline([
 svc_search = {
         'outlier': Categorical([FunctionSampler(func=isof)]),  # , FunctionSampler(func=lof)
         'sample': Categorical([RandomUnderSampler()]),  # RandomOverSampler(), , SMOTEENN(), SMOTETomek()
-        'selection__mode': ['fwe', 'fpr', 'fdr'],
+        'selection__mode': ['fwe'],
         'selection__param': Real(1e-2, 1e+2, prior='log-uniform'),
         'model': [SVC(class_weight='balanced', decision_function_shape='ovo')],
         'model__kernel': Categorical(['rbf']),
@@ -100,7 +101,7 @@ svc_search3 = {
 opt = BayesSearchCV(
     pipe,
     # (parameter space, # of evaluations)
-    [(svc_search, evals), (svc_search3, 50)],
+    [(svc_search, evals)],
     cv=5,
     scoring='balanced_accuracy',
     n_jobs=-1,
