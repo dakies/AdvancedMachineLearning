@@ -1,4 +1,5 @@
 import biosppy.signals.ecg as ecg
+import nkcopy
 import numpy as np
 import pandas as pd
 # import neurokit as nk
@@ -36,7 +37,7 @@ def extract_features(ecg_df, save=True, mode='train'):
     peaks = ['ECG_P_Peaks', 'rpeaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
     for i in peaks:
         print(i)
-        features_df['val_' + i] = features_df.apply(lambda x: x['filtered'][np.array(x[i]).astype('int')], axis=1)
+        features_df['val_' + i] = features_df.apply(lambda x: x['filtered'][x[i]], axis=1)
         features_df['mean_' + i] = features_df.apply(lambda x: np.mean(x['val_' + i]), axis=1)
         features_df['min_' + i] = features_df.apply(lambda x: np.min(x['val_' + i]), axis=1)
         features_df['max_' + i] = features_df.apply(lambda x: np.max(x['val_' + i]), axis=1)
