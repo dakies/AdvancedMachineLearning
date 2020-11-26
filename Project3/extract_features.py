@@ -34,7 +34,7 @@ def extract_features(ecg_df, save=True, mode='train'):
     features_df['ECG_P_Onsets'] = values.apply(lambda x: x['ECG_P_Onsets'])
     features_df['ECG_T_Offsets'] = values.apply(lambda x: x['ECG_T_Offsets'])
 
-    peaks = ['ECG_P_Peaks', 'rpeaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
+    peaks = ['rpeaks', 'ECG_P_Peaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
     for i in peaks:
         print(i)
         features_df['val_' + i] = features_df.apply(lambda x: x['filtered'][x[i]], axis=1)
