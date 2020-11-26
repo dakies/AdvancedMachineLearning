@@ -1,9 +1,9 @@
 import biosppy.signals.ecg as ecg
-import nkcopy
 import numpy as np
 import pandas as pd
-# import neurokit as nk
-from neurokit2.ecg import ecg_delineate
+from neurokit2 import hrv
+
+from Project3.ecg_delineate import ecg_delineate
 
 
 # import nkcopy
@@ -59,9 +59,7 @@ def extract_features(ecg_df, save=True, mode='train'):
 
     # HRV FEATURES
     # Todo: neurkit2 has more HRV features
-    features_df['hrv_time_features'] = features_df['rpeaks'].apply(lambda x: nkcopy.ecg_hrv(rpeaks=x,
-                                                                                            sampling_rate=300,
-                                                                                            hrv_features='time'))
+    features_df['hrv_time_features'] = features_df['rpeaks'].apply(lambda x: hrv(peaks=x, sampling_rate=300))
     for name in features_names_timehvr:
         features_df[name] = features_df['hrv_time_features'].apply(lambda x: x[name])
 
@@ -75,7 +73,7 @@ def extract_features(ecg_df, save=True, mode='train'):
     return features_df
 
 
-debug = 1
+debug = 0
 if debug:
     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     print('Debug mode activated')
