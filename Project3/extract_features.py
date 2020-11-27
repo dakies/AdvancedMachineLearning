@@ -1,9 +1,7 @@
-import biosppy.signals.ecg as ecg
 import numpy as np
 import pandas as pd
+from neurokit2 import ecg_process
 from neurokit2 import hrv
-
-from Project3.ecg_delineate import ecg_delineate
 
 
 # import nkcopy
@@ -16,28 +14,37 @@ def extract_features(ecg_df, save=True, mode='train'):
     '''
     input: raw X_train_df
     '''
-    features_names_timehvr = ['sdNN', 'meanNN', 'CVSD', 'cvNN', 'RMSSD', 'medianNN',
-                              'madNN', 'mcvNN', 'pNN50', 'pNN20']
+    features_names_hvr = ['HRV_RMSSD', 'HRV_MeanNN', 'HRV_SDNN', 'HRV_SDSD', 'HRV_CVNN',
+                          'HRV_CVSD', 'HRV_MedianNN', 'HRV_MadNN', 'HRV_MCVNN', 'HRV_IQRNN',
+                          'HRV_pNN50', 'HRV_pNN20', 'HRV_TINN', 'HRV_HTI', 'HRV_ULF', 'HRV_VLF',
+                          'HRV_LF', 'HRV_HF', 'HRV_VHF', 'HRV_LFHF', 'HRV_LFn', 'HRV_HFn',
+                          'HRV_LnHF', 'HRV_SD1', 'HRV_SD2', 'HRV_SD1SD2', 'HRV_S', 'HRV_CSI',
+                          'HRV_CVI', 'HRV_CSI_Modified', 'HRV_PIP', 'HRV_IALS', 'HRV_PSS',
+                          'HRV_PAS', 'HRV_GI', 'HRV_SI', 'HRV_AI', 'HRV_PI', 'HRV_C1d', 'HRV_C1a',
+                          'HRV_SD1d', 'HRV_SD1a', 'HRV_C2d', 'HRV_C2a', 'HRV_SD2d', 'HRV_SD2a',
+                          'HRV_Cd', 'HRV_Ca', 'HRV_SDNNd', 'HRV_SDNNa', 'HRV_ApEn', 'HRV_SampEn']
 
     # MAIN FEATURES, INITIALIZING #
-    values = ecg_df.apply(lambda x: ecg.ecg(x.dropna(), sampling_rate=300, show=False), axis=1)
-    features_df = pd.DataFrame({'rpeaks': values.apply(lambda x: x['rpeaks']),
-                                'filtered': values.apply(lambda x: x['filtered']),
-                                'templates': values.apply(lambda x: x['templates'])})
+    # values = ecg_df.apply(lambda x: ecg.ecg(x.dropna(), sampling_rate=300, show=False), axis=1)
+    # features_df = pd.DataFrame({'rpeaks': values.apply(lambda x: x['rpeaks']),
+    #                            'filtered': values.apply(lambda x: x['filtered']),
+    #                            'templates': values.apply(lambda x: x['templates'])})
     # Add peaks: "ECG_P_Peaks", "ECG_Q_Peaks", "ECG_S_Peaks", "ECG_T_Peaks", "ECG_P_Onsets", "ECG_T_Offsets"
-    values = features_df.apply(lambda x: ecg_delineate(
-        x['filtered'], rpeaks=x['rpeaks'], sampling_rate=300)[1], axis=1)
-    features_df['ECG_P_Peaks'] = values.apply(lambda x: x['ECG_P_Peaks'])
-    features_df['ECG_Q_Peaks'] = values.apply(lambda x: x['ECG_Q_Peaks'])
-    features_df['ECG_S_Peaks'] = values.apply(lambda x: x['ECG_S_Peaks'])
-    features_df['ECG_T_Peaks'] = values.apply(lambda x: x['ECG_T_Peaks'])
-    features_df['ECG_P_Onsets'] = values.apply(lambda x: x['ECG_P_Onsets'])
-    features_df['ECG_T_Offsets'] = values.apply(lambda x: x['ECG_T_Offsets'])
+    values = ecg_df.apply(lambda x: ecg_process(x.dropna(), method="hamilton", sampling_rate=300), axis=1)
+    features_df = pd.DataFrame({'signal': values.apply(lambda x: x[0]),
+                                'info': values.apply(lambda x: x[1])})
+    # features_df['ECG_P_Peaks'] = values.apply(lambda x: x['ECG_P_Peaks'])
+    # features_df['ECG_Q_Peaks'] = values.apply(lambda x: x['ECG_Q_Peaks'])
+    # features_df['ECG_S_Peaks'] = values.apply(lambda x: x['ECG_S_Peaks'])
+    # features_df['ECG_T_Peaks'] = values.apply(lambda x: x['ECG_T_Peaks'])
+    # features_df['ECG_P_Onsets'] = values.apply(lambda x: x['ECG_P_Onsets'])
+    # features_df['ECG_T_Offsets'] = values.apply(lambda x: x['ECG_T_Offsets'])
 
-    peaks = ['rpeaks', 'ECG_P_Peaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
+    peaks = ['ECG_R_Peaks', 'ECG_P_Peaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
     for i in peaks:
         print(i)
-        features_df['val_' + i] = features_df.apply(lambda x: x['filtered'][x[i]], axis=1)
+        features_df['val_' + i] = features_df.apply(
+            lambda x: np.array(x['signal']['ECG_Clean'].loc[x['signal'][i] == 1]), axis=1)
         features_df['mean_' + i] = features_df.apply(lambda x: np.mean(x['val_' + i]), axis=1)
         features_df['min_' + i] = features_df.apply(lambda x: np.min(x['val_' + i]), axis=1)
         features_df['max_' + i] = features_df.apply(lambda x: np.max(x['val_' + i]), axis=1)
@@ -46,29 +53,30 @@ def extract_features(ecg_df, save=True, mode='train'):
 
     # Todo: Analyze time series with tsfresh
     # POWER
-    features_df['power'] = features_df['filtered'].apply(lambda x: np.sum(np.square(x)) / x.shape[0])
+    features_df['power'] = features_df.apply(
+        lambda x: np.sum(np.square(x['signal']['ECG_Clean'])) / x['signal']['ECG_Clean'].shape[0], axis=1)
 
-    # CARDIADIC CYCLES
-    # features_df['Cardiadic_Cycles'] = features_df['templates'].apply(lambda x: x)
-    features_df['mean'] = features_df['templates'].apply(lambda x: np.mean(np.mean(x, axis=0)))
-    features_df['mean_median'] = features_df['templates'].apply(lambda x: np.mean(np.median(x, axis=0)))
-    features_df['mean_std'] = features_df['templates'].apply(lambda x: np.mean(np.std(x.astype(np.float), axis=0)))
-    features_df['min_std'] = features_df['templates'].apply(lambda x: np.min(np.std(x.astype(np.float), axis=0)))
-    features_df['max_std'] = features_df['templates'].apply(lambda x: np.max(np.std(x.astype(np.float), axis=0)))
+    ## CARDIADIC CYCLES
+    ## features_df['Cardiadic_Cycles'] = features_df['templates'].apply(lambda x: x)
+    # features_df['mean'] = features_df['templates'].apply(lambda x: np.mean(np.mean(x, axis=0)))
+    # features_df['mean_median'] = features_df['templates'].apply(lambda x: np.mean(np.median(x, axis=0)))
+    # features_df['mean_std'] = features_df['templates'].apply(lambda x: np.mean(np.std(x.astype(np.float), axis=0)))
+    # features_df['min_std'] = features_df['templates'].apply(lambda x: np.min(np.std(x.astype(np.float), axis=0)))
+    # features_df['max_std'] = features_df['templates'].apply(lambda x: np.max(np.std(x.astype(np.float), axis=0)))
     # Todo replace std with quality signal?
 
     # HRV FEATURES
-    # Todo: neurkit2 has more HRV features
-    features_df['hrv_time_features'] = features_df['rpeaks'].apply(lambda x: hrv(peaks=x, sampling_rate=300))
-    for name in features_names_timehvr:
-        features_df[name] = features_df['hrv_time_features'].apply(lambda x: x[name])
+    features_df['hrv_features'] = features_df.apply(lambda x: hrv(peaks=x['info'], sampling_rate=300), axis=1)
+    for name in features_names_hvr:
+        features_df[name] = features_df['hrv_features'].apply(lambda x: x[name])
 
     # FINALIZE / SAVE
-    features_df = features_df.drop(['rpeaks', 'filtered', 'templates', 'R_peaks', 'hrv_time_features'], axis=1)
+    features_df = features_df.drop(['val_' + s for s in peaks], axis=1)
+    features_df = features_df.drop(['hrv_features', 'signal', 'info'], axis=1)
     numberOfFeatures = len(features_df.columns)
 
     if save:
-        features_df.to_csv('./features/features_' + mode + '_' + str(numberOfFeatures) + '.csv', index=False)
+        features_df.to_csv('feat3/' + mode + '_' + str(numberOfFeatures) + '.csv', index=False)
 
     return features_df
 
@@ -91,7 +99,7 @@ else:
 # TRAIN
 # X_train_df = pd.read_csv('Project3/raw/X_train.csv')
 
-extract_features(x_train)
+extract_features(x_train, mode='train')
 
 # # TEST
 # X_test_df = pd.read_csv('../raw/X_test.csv')
