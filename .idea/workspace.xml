@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6807a5be-8708-414c-89b6-0a7cd4b8a228" name="Default Changelist" comment="There is some problem with deliniate">
-      <change afterPath="$PROJECT_DIR$/Project3/estimate.py" afterDir="false" />
+    <list default="true" id="6807a5be-8708-414c-89b6-0a7cd4b8a228" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project2/baenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/baenet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project3/extract_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project3/extract_features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project3/estimate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project3/estimate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project3/prediction.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Project3/prediction.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +77,7 @@
       <recent name="$PROJECT_DIR$/1_Project" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.extract_features">
+  <component name="RunManager" selected="Python.estimate">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="AML" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -214,8 +213,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.extract_features" />
         <item itemvalue="Python.estimate" />
+        <item itemvalue="Python.extract_features" />
         <item itemvalue="Python.feature_extr" />
         <item itemvalue="Python.xgb" />
         <item itemvalue="Python.extract_features_aur" />
@@ -248,7 +247,7 @@
       <workItem from="1605100153408" duration="787000" />
       <workItem from="1605694272591" duration="34440000" />
       <workItem from="1606386687357" duration="8281000" />
-      <workItem from="1606407535403" duration="17762000" />
+      <workItem from="1606407535403" duration="24027000" />
     </task>
     <task id="LOCAL-00001" summary="Copied extract_feature from Caner&#10;Added Features &#10;Indexing from peaks has a problem">
       <created>1606397744061</created>
@@ -278,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606428705075</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implementeted the whole ecg_process function instead of only subfunctions. Should be less efficient but hopefully work.">
+      <created>1606492932645</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606492932645</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +301,8 @@
     </ignored-roots>
     <MESSAGE value="Copied extract_feature from Caner&#10;Added Features &#10;Indexing from peaks has a problem" />
     <MESSAGE value="There is some problem with deliniate" />
-    <option name="LAST_COMMIT_MESSAGE" value="There is some problem with deliniate" />
+    <MESSAGE value="implementeted the whole ecg_process function instead of only subfunctions. Should be less efficient but hopefully work." />
+    <option name="LAST_COMMIT_MESSAGE" value="implementeted the whole ecg_process function instead of only subfunctions. Should be less efficient but hopefully work." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -342,12 +349,12 @@
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="1233" y="631" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2560.1361@0.23.2560.1361" timestamp="1603125055914" />
-    <state x="891" y="322" key="CommitChangelistDialog2" timestamp="1606492824811">
+    <state x="891" y="322" key="CommitChangelistDialog2" timestamp="1606492932269">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="446" y="0" key="CommitChangelistDialog2/0.0.1280.800/-640.-1440.2560.1440@0.0.1280.800" timestamp="1606474621325" />
     <state x="446" y="0" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1606428704566" />
-    <state x="891" y="322" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1606492824811" />
+    <state x="891" y="322" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1606492932269" />
     <state width="1280" height="438" key="DebuggerActiveHint" timestamp="1606324583478">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
