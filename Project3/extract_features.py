@@ -1,14 +1,26 @@
+import neurokit2 as nk
 import numpy as np
 import pandas as pd
-from neurokit2 import ecg_process
 from neurokit2 import hrv
 
 
-# import nkcopy
+def my_processing(ecg_signal):
+    # Do processing
+    ecg_cleaned = nk.ecg_clean(ecg_signal, sampling_rate=300, method="biosppy")
+    instant_peaks, rpeaks, = nk.ecg_peaks(ecg_cleaned, sampling_rate=300, method='hamilton2002')
+    # Additional info of the ecg signal
+    delineate_signal, delineate_info = nk.ecg_delineate(
+        ecg_cleaned=ecg_cleaned, rpeaks=rpeaks, sampling_rate=300, method='cwt'
+    )
+    # Prepare output
+    signals = pd.DataFrame({"ECG_Raw": ecg_signal,
+                            "ECG_Clean": ecg_cleaned})
+    delineate = pd.DataFrame({"signal": delineate_signal,
+                              "info": delineate_info})
+    signals = pd.concat([signals, instant_peaks], axis=1)
+    info = rpeaks
 
-
-# import frequency_analysis
-
+    return signals, info, delineate
 
 def extract_features(ecg_df, save=True, mode='train'):
     '''
@@ -27,24 +39,23 @@ def extract_features(ecg_df, save=True, mode='train'):
     # MAIN FEATURES, INITIALIZING #
     # values = ecg_df.apply(lambda x: ecg.ecg(x.dropna(), sampling_rate=300, show=False), axis=1)
     # features_df = pd.DataFrame({'rpeaks': values.apply(lambda x: x['rpeaks']),
-    #                            'filtered': values.apply(lambda x: x['filtered']),
-    #                            'templates': values.apply(lambda x: x['templates'])})
+    #                           'filtered': values.apply(lambda x: x['filtered']),
+    #                           'templates': values.apply(lambda x: x['templates'])})
     # Add peaks: "ECG_P_Peaks", "ECG_Q_Peaks", "ECG_S_Peaks", "ECG_T_Peaks", "ECG_P_Onsets", "ECG_T_Offsets"
-    values = ecg_df.apply(lambda x: ecg_process(x.dropna(), method="hamilton", sampling_rate=300), axis=1)
+    # This probably doesn't work because we dont have proper peaks
+    values = ecg_df.apply(lambda x: my_processing(x.dropna()), axis=1)
     features_df = pd.DataFrame({'signal': values.apply(lambda x: x[0]),
-                                'info': values.apply(lambda x: x[1])})
-    # features_df['ECG_P_Peaks'] = values.apply(lambda x: x['ECG_P_Peaks'])
-    # features_df['ECG_Q_Peaks'] = values.apply(lambda x: x['ECG_Q_Peaks'])
-    # features_df['ECG_S_Peaks'] = values.apply(lambda x: x['ECG_S_Peaks'])
-    # features_df['ECG_T_Peaks'] = values.apply(lambda x: x['ECG_T_Peaks'])
-    # features_df['ECG_P_Onsets'] = values.apply(lambda x: x['ECG_P_Onsets'])
-    # features_df['ECG_T_Offsets'] = values.apply(lambda x: x['ECG_T_Offsets'])
+                                'info': values.apply(lambda x: x[1]),
+                                'delineate': values.apply(lambda x: x[2])})
 
-    peaks = ['ECG_R_Peaks', 'ECG_P_Peaks', 'ECG_Q_Peaks', 'ECG_S_Peaks', 'ECG_T_Peaks', 'ECG_P_Onsets', 'ECG_T_Offsets']
+    peaks = ['ECG_R_Peaks', "ECG_P_Peaks", "ECG_T_Peaks", "ECG_P_Onsets", "ECG_P_Offsets", "ECG_T_Onsets",
+             "ECG_T_Offsets",
+             "ECG_R_Onsets", "ECG_R_Offsets"]
     for i in peaks:
         print(i)
         features_df['val_' + i] = features_df.apply(
-            lambda x: np.array(x['signal']['ECG_Clean'].loc[x['signal'][i] == 1]), axis=1)
+            lambda x: np.array(x['signal']['ECG_Clean'].loc[x['delineate']['signal'][i] == 1]), axis=1)
+        # features_df['val_' + i] = features_df.apply(lambda x: np.array(x['filtered'][x[i]]), axis=1)
         features_df['mean_' + i] = features_df.apply(lambda x: np.mean(x['val_' + i]), axis=1)
         features_df['min_' + i] = features_df.apply(lambda x: np.min(x['val_' + i]), axis=1)
         features_df['max_' + i] = features_df.apply(lambda x: np.max(x['val_' + i]), axis=1)
@@ -53,6 +64,7 @@ def extract_features(ecg_df, save=True, mode='train'):
 
     # Todo: Analyze time series with tsfresh
     # POWER
+    # features_df['power'] = features_df.apply(lambda x: ef(x['filtered'], default_fc_parameters=settings), axis=1)
     features_df['power'] = features_df.apply(
         lambda x: np.sum(np.square(x['signal']['ECG_Clean'])) / x['signal']['ECG_Clean'].shape[0], axis=1)
 
@@ -81,7 +93,7 @@ def extract_features(ecg_df, save=True, mode='train'):
     return features_df
 
 
-debug = 0
+debug = 1
 if debug:
     print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     print('Debug mode activated')
@@ -102,5 +114,5 @@ else:
 extract_features(x_train, mode='train')
 
 # # TEST
-# X_test_df = pd.read_csv('../raw/X_test.csv')
+# X_test_df = pd.read_csv('../raw/mitbih_test.csv')
 # extract_features(X_test_df, mode='test')

@@ -1,6 +1,7 @@
 import itertools
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 from biosppy.signals import ecg
 
 
@@ -22,11 +23,11 @@ from biosppy.signals import ecg
 #     print('Debug mode activated')
 #     skip = np.arange(10, 5117, step=1).tolist()
 #     X_train = pd.read_csv('raw/X_train.csv', sep=',', index_col='id', skiprows=skip)
-#     y_train = pd.read_csv('raw/y_train.csv', sep=',', index_col='id', skiprows=skip)
+#     y_train = pd.read_csv('raw/mitbih_train.csv.csv', sep=',', index_col='id', skiprows=skip)
 # else:
-#     X_test = pd.read_csv('raw/X_test.csv', sep=',', index_col='id')
+#     X_test = pd.read_csv('raw/mitbih_test.csv', sep=',', index_col='id')
 #     X_train = pd.read_csv('raw/X_train.csv', sep=',', index_col='id')
-#     y_train = pd.read_csv('raw/y_train.csv', sep=',', index_col='id')
+#     y_train = pd.read_csv('raw/mitbih_train.csv.csv', sep=',', index_col='id')
 #
 # # Todo Nan currently dropped
 # X_train = tsfresh.extract_features(X_train.stack(), column_id='id', n_jobs=4)

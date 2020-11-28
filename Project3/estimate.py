@@ -1,6 +1,7 @@
 from pprint import pprint
 from time import time
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from imblearn import FunctionSampler
@@ -15,6 +16,7 @@ from sklearn.svm import SVC
 from skopt import BayesSearchCV
 from skopt.space import Categorical, Integer, Real
 from xgboost import XGBClassifier
+from xgboost import plot_importance
 
 
 def lof(x, y):
@@ -34,25 +36,27 @@ X_test = pd.read_csv('feat2/test_63.csv')
 X_train = pd.read_csv('feat2/train_63.csv')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
-X_train = X_train.replace([np.inf, -np.inf], np.nan)
-X_test = X_test.replace([np.inf, -np.inf], np.nan)
-temp = pd.DataFrame()
-temp2 = pd.DataFrame()
-for label, content in X_train.iteritems():
-    if not X_train[label].isnull().values.any():
-        temp[label] = X_train[label]
-        temp2[label] = X_test[label]
-X_train = temp
-X_test = temp2
+# Todo how many infs and nans are there?
+X_train = X_train[X_train.columns[np.isfinite(X_train).all(0)]]
+X_test = X_test[X_train.columns[np.isfinite(X_train).all(0)]]
 print(X_train.isnull().values.any())
 print(y_train.isnull().values.any())
+# temp = pd.DataFrame()
+# temp2 = pd.DataFrame()
+# for label, content in X_train.iteritems():
+#     if not X_train[label].isnull().values.any():
+#         temp[label] = X_train[label]
+#         temp2[label] = X_test[label]
+# X_train = temp
+# X_test = temp2
 
-pseudotest = False
+
+pseudotest = True
 if pseudotest:
     X_train, X_test_val, y_train, y_test_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 
 # Reduce Data for debugging
-evals = 20
+evals = 40
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.9)
     del a, b
@@ -79,9 +83,18 @@ svc_search = {
 }
 
 xgb_search = {
-    'outlier': Categorical([FunctionSampler(func=isof), FunctionSampler(func=lof)]),  # , FunctionSampler(func=lof)
+    'outlier': Categorical([FunctionSampler(func=isof)]),  # , FunctionSampler(func=lof)
     'model': [XGBClassifier()],
-    'model__scale_pos_weight': Integer(1, 100)
+    # 'model__learning_rate': (0.01, 1.0, 'log-uniform'),
+    # 'model__min_child_weight': (0, 10),
+    # 'model__max_depth': Integer(0, 50),
+    # 'model__max_delta_step': Integer(0, 20),
+    # 'model__subsample': (0.01, 1.0, 'uniform'),
+    # 'model__colsample_bytree': (0.01, 1.0, 'uniform'),
+    # 'model__colsample_bylevel': (0.01, 1.0, 'uniform'),
+    # 'model__gamma': (1e-9, 0.5, 'log-uniform'),
+    # 'model__n_estimators': Integer(50, 100),
+    'model__scale_pos_weight': (1, 1000, 'log-uniform')
 }
 
 xgb_pca_search = {
@@ -91,7 +104,7 @@ xgb_pca_search = {
     'model__scale_pos_weight': Integer(1, 100)
 }
 
-# Haperparameter opt
+# Hyper-parameter opt
 opt = BayesSearchCV(
     pipe,
     # (parameter space, # of evaluations)
@@ -137,3 +150,6 @@ print()
 y_test = pd.DataFrame(y_test)
 y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
 print('Results saved as prediction.csv')
+
+plot_importance(opt.best_estimator_['model'], ax=plt.gca())
+plt.show()

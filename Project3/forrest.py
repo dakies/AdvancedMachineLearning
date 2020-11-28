@@ -14,9 +14,9 @@ X_test_1 = np.loadtxt('features_test.csv', delimiter=',') #preprepared features
 X_test_2 = np.loadtxt('features_test_temp_only.csv', delimiter=',') #preprepared features
 print("*")
 # print(X_test.shape)
-y_train = pd.read_csv('y_train.csv').drop(['id'], axis=1).values
+y_train = pd.read_csv('mitbih_train.csv.csv').drop(['id'], axis=1).values
 print("*")
-Id_test = np.asarray(pd.read_csv('X_test.csv')['id'].values)
+Id_test = np.asarray(pd.read_csv('mitbih_test.csv')['id'].values)
 print("*")
 # print(Id_test.shape)
 
