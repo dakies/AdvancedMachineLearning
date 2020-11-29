@@ -54,7 +54,8 @@ def extract_features(ecg_df, save=True, mode='train'):
     for i in peaks:
         print(i)
         features_df['val_' + i] = features_df.apply(
-            lambda x: np.array(x['signal']['ECG_Clean'].loc[x['delineate']['signal'][i] == 1]), axis=1)
+            lambda x: np.array(x['signal']['ECG_Clean'].loc[x['delineate']['info'][i] == 1]), axis=1)
+        # Todo handle Nans. Num nan might even be a useful measure?
         # features_df['val_' + i] = features_df.apply(lambda x: np.array(x['filtered'][x[i]]), axis=1)
         features_df['mean_' + i] = features_df.apply(lambda x: np.mean(x['val_' + i]), axis=1)
         features_df['min_' + i] = features_df.apply(lambda x: np.min(x['val_' + i]), axis=1)
