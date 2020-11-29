@@ -5,3 +5,4 @@ scipy
 sklearn
 imblearn
 xgboost
+tqdm
