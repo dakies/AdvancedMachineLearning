@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6807a5be-8708-414c-89b6-0a7cd4b8a228" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project3/estimate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project3/estimate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project3/prediction.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -256,6 +255,7 @@
       <workItem from="1606386687357" duration="8281000" />
       <workItem from="1606407535403" duration="41916000" />
       <workItem from="1606646608998" duration="46038000" />
+      <workItem from="1606729820359" duration="267000" />
     </task>
     <task id="LOCAL-00001" summary="Copied extract_feature from Caner&#10;Added Features &#10;Indexing from peaks has a problem">
       <created>1606397744061</created>
@@ -320,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606699214842</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="New features">
+      <created>1606729852231</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606729852231</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +341,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -400,11 +409,11 @@
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="1233" y="631" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2560.1361@0.23.2560.1361" timestamp="1603125055914" />
-    <state x="446" y="0" key="CommitChangelistDialog2" timestamp="1606699214314">
+    <state x="446" y="0" key="CommitChangelistDialog2" timestamp="1606729851672">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="446" y="0" key="CommitChangelistDialog2/0.0.1280.800/-640.-1440.2560.1440@0.0.1280.800" timestamp="1606474621325" />
-    <state x="446" y="0" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1606699214314" />
+    <state x="446" y="0" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1606729851672" />
     <state x="891" y="322" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1606608170553" />
     <state width="1280" height="438" key="DebuggerActiveHint" timestamp="1606694231285">
       <screen x="0" y="0" width="1280" height="800" />
