@@ -19,6 +19,7 @@ from sklearn.svm import SVR, SVC, OneClassSVM, NuSVC
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
 
 from xgboost import XGBClassifier
 from sklearn.multiclass import OneVsRestClassifier
@@ -55,16 +56,12 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 # Load data
-sample = pd.read_csv('../raw/sample.csv')
-X_test = pd.read_csv('./features/features_test_27.csv')
-X_train = pd.read_csv('./features/features_train_27.csv')
-y_train = pd.read_csv('../raw/y_train.csv', index_col='id')
+# sample = pd.read_csv('../raw/sample.csv')
+X_test = pd.read_csv('./features/features_test_43.csv')
+X_train_full = pd.read_csv('./features/features_train_43.csv')
+y_train_full = pd.read_csv('./raw/y_train.csv', index_col='id')
 
-# Reduce Data for debugging
-if 0:
-    [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.999)
-    del a, b
-    print('Debug mode on')
+[X_train, X_val, y_train, y_val] = train_test_split(X_train_full, y_train_full, test_size=0.2)
 
 # Create pipeline
 pipe = Pipeline([
@@ -161,20 +158,20 @@ param_grid_xgb = [
                                 n_jobs=1, nthread=None, random_state=0,
                                 reg_alpha=0, reg_lambda=1, seed=None,
                                 silent=None, subsample=1, verbosity=1))],
-        'estimation__estimator__min_child_weight': [1, 5, 10],
-        'estimation__estimator__gamma': [0, 1, 2],
-        'estimation__estimator__subsample': [0.6, 0.8, 1.0],
-        'estimation__estimator__colsample_bytree': [0.6, 0.8, 1.0],
-        'estimation__estimator__max_depth': [3, 5]
+        # 'estimation__estimator__min_child_weight': [1, 5, 10],
+        # 'estimation__estimator__gamma': [0, 1, 2],
+        # 'estimation__estimator__subsample': [0.6, 0.8, 1.0],
+        # 'estimation__estimator__colsample_bytree': [0.6, 0.8, 1.0],
+        # 'estimation__estimator__max_depth': [3, 5]
     }
 ]
 
 # Gridsearch
-search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, scoring='f1_micro', cv=3, verbose=10)
+search = GridSearchCV(pipe, param_grid=param_grid_xgb, n_jobs=-1, scoring='f1_micro', cv=3, verbose=0)
 print("Performing grid search...")
 print("pipeline:", [name for name, _ in pipe.steps])
 print("parameters:")
-pprint(param_grid)
+pprint(param_grid_xgb)
 t0 = time()
 search.fit(X_train, y_train.values.ravel())
 print("Done in %0.3fs" % (time() - t0))
@@ -193,14 +190,21 @@ for mean, std, params in zip(means, stds, search.cv_results_['params']):
           % (mean, std * 2, params))
 print()
 
+y_train_pred = search.best_estimator_.predict(X_train)
+y_val_pred = search.best_estimator_.predict(X_val)
+print('Training report:')
+print(classification_report(y_true=y_train, y_pred=y_train_pred))
+print('\nValidation report:')
+print(classification_report(y_true=y_val, y_pred=y_val_pred))
+
+# Train on full data
+search.best_estimator_.fit(X_train_full, y_train_full.values.ravel())
 
 # Predict for test set
 y_test = search.best_estimator_.predict(X_test)
-print()
 
 # Save prediction
 y_test = pd.DataFrame(y_test)
 y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
 print('Results saved as prediction.csv')
-
 
