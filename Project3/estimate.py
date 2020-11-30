@@ -25,38 +25,74 @@ def lof(x, y):
     return x[y_pred == 1], y[y_pred == 1]
 
 
-def isof(x, y):
-    model = IsolationForest()
+def isof(x, y, cont='auto'):
+    # Range: [0, 0.5]
+    model = IsolationForest(contamination=cont)
     y_pred = model.fit_predict(x)
     return x[y_pred == 1], y[y_pred == 1]
 
 
 # Load data
-X_test = pd.read_csv('feat2/test_63.csv')
-X_train = pd.read_csv('feat2/train_63.csv')
+X_test = pd.read_csv('final/test_127.csv')
+X_train = pd.read_csv('final/train_127.csv')
 y_train = pd.read_csv('raw/y_train.csv', index_col='id')
 
+# Remove correlated features
+# correlated_features = set()
+# correlation_matrix = X_train.corr()
+#
+# for i in range(len(correlation_matrix.columns)):
+#     for j in range(i):
+#         if abs(correlation_matrix.iloc[i, j]) > 0.8:
+#             colname = correlation_matrix.columns[i]
+#             correlated_features.add(colname)
+
+# print('Correlated features')
+# print(len(correlated_features))
+#
+# X_train = X_train.drop(labels=correlated_features, axis=1, inplace=True)
+# X_test = X_test.drop(labels=correlated_features, axis=1, inplace=True)
+
 # Todo how many infs and nans are there?
-X_train = X_train[X_train.columns[np.isfinite(X_train).all(0)]]
-X_test = X_test[X_train.columns[np.isfinite(X_train).all(0)]]
+X_train = X_train.replace([np.inf], 100000)
+X_test = X_test.replace([-np.inf], -100000)
+# si = SimpleImputer(strategy='median')
+# X_train = si.fit_transform(X_train)
+# X_test = si.transform(X_test)
+
+temp = pd.DataFrame()
+temp2 = pd.DataFrame()
+percent_missing = X_train.isnull().sum() * 100 / len(X_train)
+missing_value_df = pd.DataFrame({'column_name': X_train.columns,
+                                 'percent_missing': percent_missing})
+missing_value_df.sort_values('percent_missing', inplace=True)
+# print(missing_value_df)
+
+# for label, content in X_train.iteritems():
+#    if not X_train[label].isnull().values.any():
+#        temp[label] = X_train[label]
+#        temp2[label] = X_test[label]
+#    else:
+#        print(label)
+
+X_train = X_train.drop(
+    ['HRV_LFn', 'HRV_SampEn', 'HRV_LF', 'HRV_LFHF', 'HRV_VLF', 'HRV_ULF', 'heart_rate', 'HRV_HF', 'HRV_VHF', 'HRV_HFn',
+     'HRV_LnHF'], axis=1)
+X_test = X_test.drop(
+    ['HRV_LFn', 'HRV_SampEn', 'HRV_LF', 'HRV_LFHF', 'HRV_VLF', 'HRV_ULF', 'heart_rate', 'HRV_HF', 'HRV_VHF', 'HRV_HFn',
+     'HRV_LnHF'], axis=1)
+
 print(X_train.isnull().values.any())
 print(y_train.isnull().values.any())
-# temp = pd.DataFrame()
-# temp2 = pd.DataFrame()
-# for label, content in X_train.iteritems():
-#     if not X_train[label].isnull().values.any():
-#         temp[label] = X_train[label]
-#         temp2[label] = X_test[label]
-# X_train = temp
-# X_test = temp2
-
-
-pseudotest = True
+print()
+print(X_train.shape)
+print(y_train.shape)
+pseudotest = False
 if pseudotest:
     X_train, X_test_val, y_train, y_test_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 
 # Reduce Data for debugging
-evals = 40
+evals = 100
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.9)
     del a, b
@@ -83,7 +119,6 @@ svc_search = {
 }
 
 xgb_search = {
-    'outlier': Categorical([FunctionSampler(func=isof)]),  # , FunctionSampler(func=lof)
     'model': [XGBClassifier()],
     # 'model__learning_rate': (0.01, 1.0, 'log-uniform'),
     # 'model__min_child_weight': (0, 10),
@@ -94,11 +129,16 @@ xgb_search = {
     # 'model__colsample_bylevel': (0.01, 1.0, 'uniform'),
     # 'model__gamma': (1e-9, 0.5, 'log-uniform'),
     # 'model__n_estimators': Integer(50, 100),
-    'model__scale_pos_weight': (1, 1000, 'log-uniform')
+    'model__scale_pos_weight': Real(1, 1000, 'log-uniform'),
+    'model__min_child_weight': Integer(1, 10),
+    'model__gamma': Integer(1, 5),
+    'model__subsample': Real(0.3, 1),
+    'model__colsample_bytree': Real(0.3, 1),
+    'model__max_depth': Integer(3, 9)
 }
 
 xgb_pca_search = {
-    'outlier': Categorical([FunctionSampler(func=isof), FunctionSampler(func=lof)]),  # , FunctionSampler(func=lof)
+    # , FunctionSampler(func=lof)
     'selection': [PCA(n_components='mle')],
     'model': [XGBClassifier()],
     'model__scale_pos_weight': Integer(1, 100)
@@ -108,7 +148,7 @@ xgb_pca_search = {
 opt = BayesSearchCV(
     pipe,
     # (parameter space, # of evaluations)
-    [(xgb_search, evals), (xgb_pca_search, evals)],
+    [(xgb_search, evals)],
     cv=3,
     scoring='f1_micro',
     n_jobs=-1,
@@ -117,7 +157,7 @@ opt = BayesSearchCV(
 print("Performing grid search...")
 print("pipeline:", [name for name, _ in pipe.steps])
 print("parameters:")
-pprint(svc_search)
+pprint(xgb_search)
 t0 = time()
 opt.fit(X_train, y_train.values.ravel())
 print("Done in %0.3fs" % (time() - t0))
@@ -151,5 +191,5 @@ y_test = pd.DataFrame(y_test)
 y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
 print('Results saved as prediction.csv')
 
-plot_importance(opt.best_estimator_['model'], ax=plt.gca())
+plot_importance(opt.best_estimator_['model'], ax=plt.gca(), max_num_features=15)
 plt.show()
