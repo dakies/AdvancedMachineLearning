@@ -92,7 +92,7 @@ if pseudotest:
     X_train, X_test_val, y_train, y_test_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 
 # Reduce Data for debugging
-evals = 100
+evals = 200
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.9)
     del a, b
@@ -120,21 +120,18 @@ svc_search = {
 
 xgb_search = {
     'model': [XGBClassifier()],
-    # 'model__learning_rate': (0.01, 1.0, 'log-uniform'),
+    'model__learning_rate': (0.01, 1.0, 'log-uniform'),
     # 'model__min_child_weight': (0, 10),
-    # 'model__max_depth': Integer(0, 50),
     # 'model__max_delta_step': Integer(0, 20),
-    # 'model__subsample': (0.01, 1.0, 'uniform'),
     # 'model__colsample_bytree': (0.01, 1.0, 'uniform'),
     # 'model__colsample_bylevel': (0.01, 1.0, 'uniform'),
-    # 'model__gamma': (1e-9, 0.5, 'log-uniform'),
-    # 'model__n_estimators': Integer(50, 100),
+    'model__n_estimators': Integer(50, 150),
     'model__scale_pos_weight': Real(1, 1000, 'log-uniform'),
     'model__min_child_weight': Integer(1, 10),
     'model__gamma': Integer(1, 5),
     'model__subsample': Real(0.3, 1),
     'model__colsample_bytree': Real(0.3, 1),
-    'model__max_depth': Integer(3, 9)
+    'model__max_depth': Integer(3, 20)
 }
 
 xgb_pca_search = {
@@ -190,6 +187,10 @@ print()
 y_test = pd.DataFrame(y_test)
 y_test.to_csv('prediction.csv', index_label='id', header=['y'], compression=None)
 print('Results saved as prediction.csv')
+
+# Save tree
+# https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+opt.best_estimator_['model'].save_model('model_file_name.json')
 
 plot_importance(opt.best_estimator_['model'], ax=plt.gca(), max_num_features=15)
 plt.show()
