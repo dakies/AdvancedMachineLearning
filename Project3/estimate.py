@@ -1,5 +1,5 @@
+import time
 from pprint import pprint
-from time import time
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -101,7 +101,7 @@ if pseudotest:
     X_train, X_test_val, y_train, y_test_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
 
 # Reduce Data for debugging
-evals = 10
+evals = 200
 if 0:
     [X_train, a, y_train, b] = train_test_split(X_train, y_train, test_size=0.9)
     del a, b
@@ -128,12 +128,10 @@ svc_search = {
 }
 
 xgb_search = {
-    'model': [XGBClassifier()],
+    'model': [XGBClassifier(feature_names=X_train.columns)],
     'scale': ['passthrough'],
-    # 'model__min_child_weight': (0, 10),
-    # 'model__max_delta_step': Integer(0, 20),
-    # 'model__colsample_bytree': (0.01, 1.0, 'uniform'),
-    # 'model__colsample_bylevel': (0.01, 1.0, 'uniform'),
+    'model__max_delta_step': Integer(0, 20),
+    'model__colsample_bylevel': (0.01, 1.0, 'uniform'),
     'model__learning_rate': (0.01, 1.0, 'log-uniform'),
     'model__n_estimators': Integer(50, 150),
     'model__scale_pos_weight': Real(1, 1000, 'log-uniform'),
@@ -174,7 +172,7 @@ xgb_pca_search = {
 opt = BayesSearchCV(
     pipe,
     # (parameter space, # of evaluations)
-    [(xgb_search_prev, evals)],
+    [(xgb_search, evals)],
     cv=3,
     scoring='f1_micro',
     n_jobs=-1,
@@ -184,9 +182,9 @@ print("Performing grid search...")
 print("pipeline:", [name for name, _ in pipe.steps])
 print("parameters:")
 pprint(xgb_search)
-t0 = time()
+t0 = time.time()
 opt.fit(X_train, y_train.values.ravel())
-print("Done in %0.3fs" % (time() - t0))
+print("Done in %0.3fs" % (time.time() - t0))
 print()
 
 # Evaluate Results
@@ -219,7 +217,8 @@ print('Results saved as prediction.csv')
 
 # Save tree
 # https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-opt.best_estimator_['model'].save_model('model_file_name.json')
+# year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+opt.best_estimator_['model'].save_model('XGBoost_model''.json')
 
 plot_importance(opt.best_estimator_['model'], ax=plt.gca(), max_num_features=15)
 plt.show()
