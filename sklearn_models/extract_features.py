@@ -1,5 +1,6 @@
 ## INCLUDES AMPLITUDE FEATURES, FREQUENCY FEATURES, EMG ONSET FEATURES ##
 # Insight: if an epoch contains EMG onset, it's in class 1 %100 of the time
+# Idea: combine 5 consecutive epochs (since there is coherence between epochs), predict for the middle epoch
 
 import numpy as np
 import pandas as pd
@@ -7,6 +8,7 @@ from biosppy.signals import eeg, emg
 #import neurokit as nk
 from tqdm import tqdm
 import frequency_analysis
+import utils
 
 freq_bands_general = {'delta':[0,0.04],
 					  'theta':[0.04, 0.08],
@@ -15,7 +17,7 @@ freq_bands_general = {'delta':[0,0.04],
 					  'beta':[0.13, 0.25],
 					  'gamma':[0.25, 0.5]}
 
-def extract_features(eeg1_df, eeg2_df, emg_df, save=True, mode='train'):
+def extract_features(eeg1_df, eeg2_df, emg_df, save=True, mode='train', combine_5_epochs=True):
     '''
     input: raw X_train_df
     '''
@@ -64,18 +66,39 @@ def extract_features(eeg1_df, eeg2_df, emg_df, save=True, mode='train'):
 
 
     # EMG ONSET FEATURES
-    # 1) try finding onsets for individual epochs
-    # 2) find onsets for individual patients, extract epoch indexes
-    features_df['consists_emg_onset'] = features_df['emg_onsets'].apply(lambda x: 0 if len(x)==0 else 1)
+    # 1) finding onsets for individual epochs
+    features_df['consists_emg_onset'] = features_df['emg_onsets'].apply(lambda x: 0 if len(x) == 0 else 1)
+    # 2) finding onsets for individual patients, extract epoch indexes
+    number_of_patients = int(len(emg_df)/21600)
+    onset_features_patient = []
+    for i in range(number_of_patients):
+        patient_emg = emg_df.values.reshape(-1)
+        patient_emg = patient_emg[i*21600*512:(i+1)*21600*512]
+        ts_emg_all, filtered_emg_all, onsets_emg_all = emg.emg(patient_emg, show=False)
+        onset_indexes = np.array(onsets_emg_all / 512, dtype=int)
+        onset_indexes = np.unique(onset_indexes)
+        for j in range(21600):
+            if j in onset_indexes:
+                onset_features_patient.append(1)
+            else:
+                onset_features_patient.append(0)
+    features_df['consists_emg_onset_patient'] = np.array(onset_features_patient)
+
+
+    # COMBINING 5 EPOCH FEATURES / DROP UNNECESSARY COLUMNS
+    features_df = features_df.drop(['filtered_eeg1', 'filtered_eeg2', 'filtered_emg',
+                                    'emg_onsets', 'freq_features_eeg1', 'freq_features_eeg2'], axis=1)
+    if combine_5_epochs:
+        features_df_5_epochs = utils.combine_5_epochs(features_df)
 
 
     # FINALIZE / SAVE
-    features_df = features_df.drop(['filtered_eeg1', 'filtered_eeg2', 'filtered_emg',
-                                    'emg_onsets', 'freq_features_eeg1', 'freq_features_eeg2'], axis=1)
     numberOfFeatures = len(features_df.columns)
 
     if save:
         features_df.to_csv('./features/features_'+mode+'_'+str(numberOfFeatures)+'.csv', index=False)
+        if combine_5_epochs:
+            features_df_5_epochs.to_csv('./features/features_5e_' + mode + '_' + str(numberOfFeatures*5) + '.csv', index=False)
 
     return features_df
 
