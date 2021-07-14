@@ -1,5 +1,5 @@
 # Advanced Machine Learning
-Grade >5.5
+Grade 5.62
 ## Top 3 methods for task 1
 ### 1
 I outline the steps of our method below:
